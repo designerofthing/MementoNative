@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-mementonative-dev-152230-authRole",
+      "UnauthRoleArn": "arn:aws:iam::472778048125:role/amplify-mementonative-dev-152230-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::472778048125:role/amplify-mementonative-dev-152230-authRole",
+      "Region": "eu-west-2",
+      "DeploymentBucketName": "amplify-mementonative-dev-152230-deployment",
+      "UnauthRoleName": "amplify-mementonative-dev-152230-unauthRole",
+      "StackName": "amplify-mementonative-dev-152230",
+      "StackId": "arn:aws:cloudformation:eu-west-2:472778048125:stack/amplify-mementonative-dev-152230/7bc451a0-3317-11eb-9bf3-06af3644828e",
+      "AmplifyAppId": "d3lmyohx43jybs"
+    }
+  }
+}
