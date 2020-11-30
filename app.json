@@ -1,0 +1,12 @@
+{
+  "name": "MementoNative",
+  "displayName": "MementoNative",
+  "expo": {
+    "name": "MementoNative",
+    "slug": "MementoNative",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
