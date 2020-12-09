@@ -1,1 +1,10 @@
-{}
+{
+  "auth": {
+    "mementonative7e081602": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}

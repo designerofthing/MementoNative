@@ -6,6 +6,9 @@ import {
   useFonts,
   Taviraj_400Regular
 } from "@expo-google-fonts/dev";
+import Amplify from 'aws-amplify';
+import config from './aws-exports';
+Amplify.configure(config);
 
 
 export default function App() {
