@@ -73,12 +73,7 @@ function App() {
         function updateAuthState(isUserLoggedIn) {
           setUserLoggedIn(isUserLoggedIn);
         }
-  
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
-    return (
-      <View style={styles.container}>
+  return (
         <NavigationContainer>
         {isUserLoggedIn === 'initializing' && <Initializing />}
         {isUserLoggedIn === 'loggedIn' && (
@@ -88,14 +83,9 @@ function App() {
           <AuthenticationNavigator updateAuthState={updateAuthState} />
         )}
       </NavigationContainer>
-        <Button title="Sign Out" color="silver" onPress={signOut} />
-        <Text style={styles.logo}>Memento </Text>
-        <Text style={styles.text}>Memorial App</Text>
-        <StatusBar style="auto" />
-      </View>
     );
   }
-}
+
 export default App;
 
 
