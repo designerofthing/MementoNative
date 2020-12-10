@@ -10,6 +10,7 @@ import {
   Image,
 } from "react-native";
 import Swiper from "react-native-swiper/src";
+import Authorisation from './Authorisation'
 import mori1 from "../../assets/jean-tuttle-memento-mori.jpg";
 import mori2 from "../../assets/memento-mori.jpg";
 import mori3 from "../../assets/sands-of-time.jpg";
@@ -20,8 +21,10 @@ const { width, height } = Dimensions.get("window");
 
 export default function Onboarding() {
 
- const _onPress = text => {
-    Alert.alert(text);
+ const _onPress = () => {
+   return(
+   <Authorisation />
+   )
   }
   return (
     <View style={styles.container}>
@@ -46,12 +49,12 @@ export default function Onboarding() {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={() => _onPress('Tapped Sign up')}>
+        <TouchableOpacity onPress={() => _onPress()}>
         <View style={styles.signupContainer}>
           <Text style={styles.signup}>Sign up</Text>
         </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => _onPress('Tapped Log in')}>
+        <TouchableOpacity onPress={() => _onPress()}>
         <View style={styles.loginContainer}>
           <Text style={styles.login}>Log in</Text>
         </View>

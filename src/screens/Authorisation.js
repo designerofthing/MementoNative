@@ -4,14 +4,14 @@ import { useFonts, Taviraj_400Regular } from "@expo-google-fonts/dev";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Amplify, { Auth } from "aws-amplify";
-import SignIn from './src/screens/SignIn';
-import SignUp from './src/screens/SignUp';
-import ConfirmSignUp from './src/screens/ConfirmSignUp';
-import Home from './src/screens/Home';
-import config from "./aws-exports";
+import SignIn from './SignIn';
+import SignUp from './SignUp';
+import ConfirmSignUp from './ConfirmSignUp';
+import Home from './Home';
+import config from "../../aws-exports";
 Amplify.configure(config);
 
-function Auth() {
+function Authorisation() {
   const [isUserLoggedIn, setUserLoggedIn] = useState('initializing');
 
   
@@ -84,7 +84,7 @@ function Auth() {
     );
   }
 
-export default Auth;
+export default  Authorisation;
 
 
 const styles = StyleSheet.create({
