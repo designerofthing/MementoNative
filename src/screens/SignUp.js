@@ -4,12 +4,14 @@ import { Auth } from "aws-amplify";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AppTextInput from "../components/AppTextInput";
 import AppButton from "../components/AppButton";
+import AppHeader from "../components/AppHeader";
+
 
 export default function SignUp({ navigation }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  
+
   async function signUp() {
     try {
       await Auth.signUp({ username, password, attributes: { email } });
@@ -21,6 +23,7 @@ export default function SignUp({ navigation }) {
   }
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
+      <AppHeader />
       <View style={styles.container}>
         <Text style={styles.title}>Create a new account</Text>
         <AppTextInput
@@ -75,7 +78,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    color: "#202020",
+    color: "purple",
     fontWeight: "500",
     marginVertical: 15,
   },
@@ -85,7 +88,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   forgotPasswordButtonText: {
-    color: "tomato",
+    color: "purple",
     fontSize: 18,
     fontWeight: "600",
   },

@@ -4,6 +4,7 @@ import { Auth } from 'aws-amplify';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AppTextInput from '../components/AppTextInput';
 import AppButton from '../components/AppButton';
+import AppHeader from '../components/AppHeader';
 
 export default function ConfirmSignUp({ navigation }) {
   const [username, setUsername] = useState('');
@@ -22,6 +23,7 @@ export default function ConfirmSignUp({ navigation }) {
   }
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
+      <AppHeader />
       <View style={styles.container}>
         <Text style={styles.title}>Confirm Sign Up</Text>
         <AppTextInput

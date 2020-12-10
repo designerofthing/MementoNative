@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { Auth } from 'aws-amplify';
+import AppHeader from '../components/AppHeader';
 
 export default function Home({ updateAuthState }) {
   async function signOut() {
@@ -12,10 +13,12 @@ export default function Home({ updateAuthState }) {
     }
   }
   return (
+    <>
+      <AppHeader />
     <View style={styles.container}>
-      <Text>  + </Text>
-      <Button title="Sign Out" color="tomato" onPress={signOut} />
+      <Button title="Sign Out" color="purple" onPress={signOut} />
     </View>
+    </>
   );
 }
 const styles = StyleSheet.create({

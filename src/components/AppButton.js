@@ -17,10 +17,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 15,
     width: "80%",
-    backgroundColor: "silver",
+    backgroundColor: "purple",
   },
   buttonText: {
-    color: "purple",
+    color: "silver",
     fontSize: 18,
     fontWeight: "600",
     textTransform: "uppercase",
