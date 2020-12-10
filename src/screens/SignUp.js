@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { Auth } from 'aws-amplify';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import AppTextInput from '../components/AppTextInput';
-import AppButton from '../components/AppButton';
+import React, { useState } from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Auth } from "aws-amplify";
+import { SafeAreaView } from "react-native-safe-area-context";
+import AppTextInput from "../components/AppTextInput";
+import AppButton from "../components/AppButton";
 
 export default function SignUp({ navigation }) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  
   async function signUp() {
     try {
       await Auth.signUp({ username, password, attributes: { email } });
-      console.log(' Sign-up Confirmed');
-      navigation.navigate('ConfirmSignUp');
+      console.log(" Sign-up Confirmed");
+      navigation.navigate("ConfirmSignUp");
     } catch (error) {
-      console.log(' Error signing up...', error);
+      console.log(" Error signing up...", error);
     }
   }
   return (
@@ -24,7 +25,7 @@ export default function SignUp({ navigation }) {
         <Text style={styles.title}>Create a new account</Text>
         <AppTextInput
           value={username}
-          onChangeText={text => setUsername(text)}
+          onChangeText={(text) => setUsername(text)}
           leftIcon="account"
           placeholder="Enter username"
           autoCapitalize="none"
@@ -33,7 +34,7 @@ export default function SignUp({ navigation }) {
         />
         <AppTextInput
           value={password}
-          onChangeText={text => setPassword(text)}
+          onChangeText={(text) => setPassword(text)}
           leftIcon="lock"
           placeholder="Enter password"
           autoCapitalize="none"
@@ -43,7 +44,7 @@ export default function SignUp({ navigation }) {
         />
         <AppTextInput
           value={email}
-          onChangeText={text => setEmail(text)}
+          onChangeText={(text) => setEmail(text)}
           leftIcon="email"
           placeholder="Enter email"
           autoCapitalize="none"
@@ -52,7 +53,7 @@ export default function SignUp({ navigation }) {
         />
         <AppButton title="Sign Up" onPress={signUp} />
         <View style={styles.footerButtonContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
+          <TouchableOpacity onPress={() => navigation.navigate("SignIn")}>
             <Text style={styles.forgotPasswordButtonText}>
               Already have an account? Sign In
             </Text>
@@ -66,26 +67,26 @@ export default function SignUp({ navigation }) {
 const styles = StyleSheet.create({
   safeAreaContainer: {
     flex: 1,
-    backgroundColor: 'white'
+    backgroundColor: "white",
   },
   container: {
     flex: 1,
-    alignItems: 'center'
+    alignItems: "center",
   },
   title: {
     fontSize: 20,
-    color: '#202020',
-    fontWeight: '500',
-    marginVertical: 15
+    color: "#202020",
+    fontWeight: "500",
+    marginVertical: 15,
   },
   footerButtonContainer: {
     marginVertical: 15,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center",
   },
   forgotPasswordButtonText: {
-    color: 'tomato',
+    color: "tomato",
     fontSize: 18,
-    fontWeight: '600'
-  }
+    fontWeight: "600",
+  },
 });
