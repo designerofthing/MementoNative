@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { Auth } from 'aws-amplify';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import AppTextInput from '../components/AppTextInput';
-import AppButton from '../components/AppButton';
+import React, { useState } from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Auth } from "aws-amplify";
+import { SafeAreaView } from "react-native-safe-area-context";
+import AppTextInput from "../components/AppTextInput";
+import AppButton from "../components/AppButton";
+
 export default function SignIn({ navigation, updateAuthState }) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   async function signIn() {
     try {
       await Auth.signIn(username, password);
-      console.log(' Success');
-      updateAuthState('loggedIn');
+      console.log(" Success");
+      updateAuthState("loggedIn");
     } catch (error) {
-      console.log(' Error signing in...', error);
+      console.log(" Error signing in...", error);
     }
   }
   return (
@@ -22,7 +23,7 @@ export default function SignIn({ navigation, updateAuthState }) {
         <Text style={styles.title}>Sign in to your account</Text>
         <AppTextInput
           value={username}
-          onChangeText={text => setUsername(text)}
+          onChangeText={(text) => setUsername(text)}
           leftIcon="account"
           placeholder="Enter username"
           autoCapitalize="none"
@@ -31,7 +32,7 @@ export default function SignIn({ navigation, updateAuthState }) {
         />
         <AppTextInput
           value={password}
-          onChangeText={text => setPassword(text)}
+          onChangeText={(text) => setPassword(text)}
           leftIcon="lock"
           placeholder="Enter password"
           autoCapitalize="none"
@@ -41,7 +42,7 @@ export default function SignIn({ navigation, updateAuthState }) {
         />
         <AppButton title="Login" onPress={signIn} />
         <View style={styles.footerButtonContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+          <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
             <Text style={styles.forgotPasswordButtonText}>
               Don't have an account? Sign Up
             </Text>
@@ -51,3 +52,30 @@ export default function SignIn({ navigation, updateAuthState }) {
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  safeAreaContainer: {
+    flex: 1,
+    backgroundColor: 'white'
+  },
+  container: {
+    flex: 1,
+    alignItems: 'center'
+  },
+  title: {
+    fontSize: 20,
+    color: '#202020',
+    fontWeight: '500',
+    marginVertical: 15
+  },
+  footerButtonContainer: {
+    marginVertical: 15,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  forgotPasswordButtonText: {
+    color: 'tomato',
+    fontSize: 18,
+    fontWeight: '600'
+  }
+});
