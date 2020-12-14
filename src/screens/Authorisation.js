@@ -9,6 +9,7 @@ import SignUp from './SignUp';
 import ConfirmSignUp from './ConfirmSignUp';
 import Home from './Home';
 import config from "../../aws-exports";
+import Onboarding from "./Onboarding";
 Amplify.configure(config);
 
 function Authorisation() {
@@ -73,7 +74,7 @@ function Authorisation() {
         }
   return (
         <NavigationContainer>
-        {isUserLoggedIn === 'initializing' && <Initializing />}
+        {isUserLoggedIn === 'initializing' && <Onboarding />}
         {isUserLoggedIn === 'loggedIn' && (
           <AppNavigator updateAuthState={updateAuthState} />
         )}

@@ -16,12 +16,8 @@ import AppHeader from "../components/AppHeader";
 
 const { width, height } = Dimensions.get("window");
 
+function Onboarding({ navigation, updateAuthState }) {
 
-function Onboarding({ navigation }) {
-  const { navigate } = navigation;
-
-  
-  console.log(navigation.navigate)  
   return (
     <View style={styles.container}>
       <StatusBar hidden={true} />
@@ -39,19 +35,19 @@ function Onboarding({ navigation }) {
       <View style={styles.textContainer}>
         <View style={styles.titleContainer}>
           {/* <Text style={styles.title}>Menu 1</Text> */}
-          <AppHeader/>
+          <AppHeader />
         </View>
         {/* <View style={styles.subTitleContainer}>
           <Text style={styles.subTitle}>Menu 2</Text>
         </View> */}
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={() => navigate("SignUp")}>
+        <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
           <View style={styles.signupContainer}>
             <Text style={styles.signup}>Sign up</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() =>  navigate("SignIn")}>
+        <TouchableOpacity onPress={() => navigation.navigate("SignIn")}>
           <View style={styles.loginContainer}>
             <Text style={styles.login}>Log in</Text>
           </View>
@@ -110,14 +106,13 @@ const styles = StyleSheet.create({
     position: "absolute",
     flexDirection: "row",
     bottom: 70,
-    width: 370,
+    width: width,
     height: 60,
-    marginLeft: 20,
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
   },
   signupContainer: {
-    width: 180,
+    width: 150,
     height: 60,
     backgroundColor: "purple",
     borderRadius: 10,
@@ -130,7 +125,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   loginContainer: {
-    width: 180,
+    width: 150,
     height: 60,
     borderColor: "purple",
     borderRadius: 10,

@@ -24,10 +24,10 @@ export default function AppHeader() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "purple",
     alignItems: "center",
     justifyContent: "center",
+    height: 100,
   },
   text: {
     // fontFamily: "Taviraj",

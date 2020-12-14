@@ -87,13 +87,12 @@ function App() {
   }
   return (
     <NavigationContainer>
-      {isUserLoggedIn === "initializing" && <Initializing />}
+      {isUserLoggedIn === "initializing" && <Onboarding />}
       {isUserLoggedIn === "loggedIn" && (
         <AppNavigator updateAuthState={updateAuthState} />
       )}
       {isUserLoggedIn === "loggedOut" && (
         <>
-          {/* <Onboarding /> */}
           <AuthenticationNavigator updateAuthState={updateAuthState} />
         </>
       )}
