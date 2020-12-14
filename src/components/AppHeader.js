@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     backgroundColor: "purple",
     alignItems: "center",
     justifyContent: "center",
+    height: 100,
   },
   text: {
     // fontFamily: "Taviraj",

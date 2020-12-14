@@ -6,11 +6,9 @@ import {
   StyleSheet,
   Dimensions,
   TouchableOpacity,
-  Alert,
   Image,
 } from "react-native";
 import Swiper from "react-native-swiper/src";
-import Authorisation from './Authorisation'
 import mori1 from "../../assets/jean-tuttle-memento-mori.jpg";
 import mori2 from "../../assets/memento-mori.jpg";
 import mori3 from "../../assets/sands-of-time.jpg";
@@ -18,14 +16,11 @@ import mori3 from "../../assets/sands-of-time.jpg";
 const { width, height } = Dimensions.get("window");
 
 
+function Onboarding({ navigation }) {
+  const { navigate } = navigation;
 
-export default function Onboarding() {
-
- const _onPress = () => {
-   return(
-   <Authorisation />
-   )
-  }
+  
+  console.log(navigation.navigate)  
   return (
     <View style={styles.container}>
       <StatusBar hidden={true} />
@@ -49,20 +44,22 @@ export default function Onboarding() {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={() => _onPress()}>
-        <View style={styles.signupContainer}>
-          <Text style={styles.signup}>Sign up</Text>
-        </View>
+        <TouchableOpacity onPress={() => navigate("SignUp")}>
+          <View style={styles.signupContainer}>
+            <Text style={styles.signup}>Sign up</Text>
+          </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => _onPress()}>
-        <View style={styles.loginContainer}>
-          <Text style={styles.login}>Log in</Text>
-        </View>
+        <TouchableOpacity onPress={() =>  navigate("SignIn")}>
+          <View style={styles.loginContainer}>
+            <Text style={styles.login}>Log in</Text>
+          </View>
         </TouchableOpacity>
       </View>
     </View>
   );
 }
+export default Onboarding;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -108,14 +105,14 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   buttonContainer: {
-    position: 'absolute',
-    flexDirection: 'row',
+    position: "absolute",
+    flexDirection: "row",
     bottom: 70,
     width: 370,
     height: 60,
     marginLeft: 20,
-    alignItems: 'center',
-    justifyContent: 'space-between'
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   signupContainer: {
     width: 180,
@@ -128,7 +125,7 @@ const styles = StyleSheet.create({
   signup: {
     fontFamily: "serif",
     fontSize: 20,
-    fontWeight: '600'
+    fontWeight: "600",
   },
   loginContainer: {
     width: 180,
