@@ -12,6 +12,7 @@ import Swiper from "react-native-swiper/src";
 import mori1 from "../../assets/jean-tuttle-memento-mori.jpg";
 import mori2 from "../../assets/memento-mori.jpg";
 import mori3 from "../../assets/sands-of-time.jpg";
+import AppHeader from "../components/AppHeader";
 
 const { width, height } = Dimensions.get("window");
 
@@ -37,11 +38,12 @@ function Onboarding({ navigation }) {
       </Swiper>
       <View style={styles.textContainer}>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>Menu 1</Text>
+          {/* <Text style={styles.title}>Menu 1</Text> */}
+          <AppHeader/>
         </View>
-        <View style={styles.subTitleContainer}>
+        {/* <View style={styles.subTitleContainer}>
           <Text style={styles.subTitle}>Menu 2</Text>
-        </View>
+        </View> */}
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={() => navigate("SignUp")}>
@@ -83,7 +85,7 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     width: 300,
-    height: 70,
+    height: 100,
     backgroundColor: "purple",
     alignItems: "center",
     justifyContent: "center",
