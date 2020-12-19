@@ -7,14 +7,14 @@ import {
   Dimensions,
   TouchableOpacity,
   SafeAreaView,
-  FlatList
+  FlatList,
 } from "react-native";
 import { Auth } from "aws-amplify";
 import AppHeader from "../components/AppHeader";
 import MementoDetail from "./MementoDetail";
-import DATA from '../components/MockData'
+import DATA from "../components/MockData";
 
-const Item = ({ item, onPress, style }) => (
+const Item = ({ item, onPress }) => (
   <TouchableOpacity
     onPress={onPress}
     style={[styles.mementoListContainer, style]}
@@ -29,7 +29,10 @@ export default function Home({ updateAuthState }) {
   const [selectedId, setSelectedId] = useState(null);
 
   const renderItem = ({ item }) => {
-    return <MementoDetail item={item} onPress={() => setSelectedId(item.id)} />;
+    setSelectedId(item.id);
+    return (
+      <Item item={item} onPress={() => navigation.navigate("MementoDetail")} />
+    );
   };
 
   async function signOut() {
@@ -41,9 +44,6 @@ export default function Home({ updateAuthState }) {
     }
   }
 
-  const handlePress = (e) => {
-    navigation.navigate("MementoDetail");
-  };
   return (
     <>
       <AppHeader />
@@ -56,10 +56,8 @@ export default function Home({ updateAuthState }) {
               <Text style={styles.createMemento}>Create Memento</Text>
             </View>
           </TouchableOpacity>
-          <View style={styles.mementoHeaderContainer}>
-            <Text style={styles.mementoHeader}>My Mementos</Text>
-          </View>
           <SafeAreaView style={styles.mementoListContainer}>
+            <Text style={styles.mementoHeader}>My Mementos</Text>
             <FlatList
               data={DATA}
               renderItem={renderItem}
@@ -68,7 +66,12 @@ export default function Home({ updateAuthState }) {
             />
           </SafeAreaView>
         </View>
-        <Button title="Sign Out" color="purple" onPress={signOut} />
+        <Button
+          style={styles.signOut}
+          title="Sign Out"
+          color="purple"
+          onPress={signOut}
+        />
       </View>
     </>
   );
@@ -89,6 +92,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   createMementoContainer: {
+    position: "absolute",
     width: 150,
     height: 60,
     backgroundColor: "purple",
@@ -101,12 +105,21 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "600",
   },
-  mementoHeaderContainer: {
+  signOut: {
+    position: "absolute",
     width: 150,
     height: 60,
-    borderColor: "purple",
+    backgroundColor: "purple",
     borderRadius: 10,
-    borderWidth: 2,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  mementoHeaderContainer: {
+    position: "absolute",
+    bottom: 400,
+    width: 300,
+    height: 60,
+    color: "purple",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -115,8 +128,8 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   mementoListContainer: {
-    width: 150,
-    height: 60,
+    width: width,
+    height: height,
     borderColor: "purple",
     borderRadius: 10,
     borderWidth: 2,
