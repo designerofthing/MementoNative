@@ -11,6 +11,7 @@ import ConfirmSignUp from "./src/screens/ConfirmSignUp";
 import Home from "./src/screens/Home";
 import Onboarding from "./src/screens/Onboarding";
 import config from "./aws-exports";
+import MementoDetail from "./src/screens/MementoDetail";
 Amplify.configure(config);
 
 function App() {
@@ -45,15 +46,15 @@ function App() {
   const AppNavigator = (props) => {
     return (
       <AppStack.Navigator>
-        {/* <AppStack.Screen name="Onboarding">
-          {screenProps => (
-            <Onboarding {...screenProps} updateAuthState={props.updateAuthState} />
-            )}
-        </AppStack.Screen> */}
         <AppStack.Screen name="Home">
           {(screenProps) => (
             <Home {...screenProps} updateAuthState={props.updateAuthState} />
           )}
+        </AppStack.Screen>
+        <AppStack.Screen name="MementoDetail">
+          {screenProps => (
+            <MementoDetail {...screenProps} updateAuthState={props.updateAuthState} />
+            )}
         </AppStack.Screen>
       </AppStack.Navigator>
     );
@@ -102,21 +103,3 @@ function App() {
 
 export default App;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "purple",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    // fontFamily: "Taviraj",
-    color: "black",
-    fontSize: 20,
-  },
-  logo: {
-    fontFamily: "Taviraj",
-    color: "silver",
-    fontSize: 50,
-  },
-});

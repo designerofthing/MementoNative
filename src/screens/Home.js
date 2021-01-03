@@ -8,30 +8,31 @@ import {
   TouchableOpacity,
   SafeAreaView,
   FlatList,
+  Image,
 } from "react-native";
 import { Auth } from "aws-amplify";
 import AppHeader from "../components/AppHeader";
-import MementoDetail from "./MementoDetail";
 import DATA from "../components/MockData";
 
 const Item = ({ item, onPress }) => (
   <TouchableOpacity
     onPress={onPress}
-    style={[styles.mementoListContainer, style]}
+    style={styles.mementoListContainer}
   >
     <Text style={styles.mementoList}>{item.title}</Text>
+    <Image source={item.image} />
   </TouchableOpacity>
 );
 
 const { width, height } = Dimensions.get("window");
 
-export default function Home({ updateAuthState }) {
-  const [selectedId, setSelectedId] = useState(null);
+export default function Home({ navigation, updateAuthState }) {
+  // const [selectedId, setSelectedId] = useState(null);
 
   const renderItem = ({ item }) => {
-    setSelectedId(item.id);
-    return (
-      <Item item={item} onPress={() => navigation.navigate("MementoDetail")} />
+    // setSelectedId(item.id);
+    return ( 
+      <Item item={item} onPress={() => navigation.navigate("MementoDetails", {item: item})}  />
     );
   };
 
@@ -48,31 +49,30 @@ export default function Home({ updateAuthState }) {
     <>
       <AppHeader />
       <View style={styles.container}>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("CreateMemento")}
-          >
-            <View style={styles.createMementoContainer}>
-              <Text style={styles.createMemento}>Create Memento</Text>
-            </View>
-          </TouchableOpacity>
-          <SafeAreaView style={styles.mementoListContainer}>
-            <Text style={styles.mementoHeader}>My Mementos</Text>
+             <SafeAreaView style={styles.mementoListContainer}>
+            <Text style={styles.mementoHeader}>my mementos</Text>
             <FlatList
               data={DATA}
               renderItem={renderItem}
               keyExtractor={(item) => item.id}
-              extraData={selectedId}
+              // extraData={selectedId}
             />
           </SafeAreaView>
         </View>
+        <View style={styles.buttonContainer} >
+        <Button
+        style={styles.signOut}
+        title="Create memento"
+        color="purple"
+        onPress={() => navigation.navigate("CreateMemento")}
+      />
         <Button
           style={styles.signOut}
           title="Sign Out"
           color="purple"
           onPress={signOut}
-        />
-      </View>
+        /> 
+     </View>
     </>
   );
 }
@@ -129,7 +129,6 @@ const styles = StyleSheet.create({
   },
   mementoListContainer: {
     width: width,
-    height: height,
     borderColor: "purple",
     borderRadius: 10,
     borderWidth: 2,

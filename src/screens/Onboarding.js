@@ -33,13 +33,7 @@ function Onboarding({ navigation, updateAuthState }) {
         </View>
       </Swiper>
       <View style={styles.textContainer}>
-        <View style={styles.titleContainer}>
-          {/* <Text style={styles.title}>Menu 1</Text> */}
           <AppHeader />
-        </View>
-        {/* <View style={styles.subTitleContainer}>
-          <Text style={styles.subTitle}>Menu 2</Text>
-        </View> */}
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
