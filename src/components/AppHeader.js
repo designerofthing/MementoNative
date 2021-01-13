@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   title: {
-    color: "black",
-    fontSize: 30,
+    color: "#50055E",
+    fontSize: 50,
   },
   text: {
     color: "black",
@@ -35,5 +35,6 @@ const styles = StyleSheet.create({
   logo: {
     width: 50,
     height: 50,
+    // #50055E
   },
 });

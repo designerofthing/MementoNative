@@ -19,20 +19,24 @@ const Item = ({ item, onPress }) => (
     onPress={onPress}
     style={styles.mementoListContainer}
   >
+    <Image source={item.image} style={styles.image}/>
     <Text style={styles.mementoList}>{item.title}</Text>
-    <Image source={item.image} />
   </TouchableOpacity>
 );
 
 const { width, height } = Dimensions.get("window");
 
 export default function Home({ navigation, updateAuthState }) {
-  // const [selectedId, setSelectedId] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
 
-  const renderItem = ({ item }) => {
-    // setSelectedId(item.id);
+ const _onPressItem = (item) => {
+    setSelectedItem(item);
+    navigation.navigate("MementoDetail", {item: selectedItem})
+  }
+
+  const renderItem = ({ item }) => { 
     return ( 
-      <Item item={item} onPress={() => navigation.navigate("MementoDetails", {item: item})}  />
+      <Item item={item} onPress={() => _onPressItem(selectedItem)}  />
     );
   };
 
@@ -50,18 +54,20 @@ export default function Home({ navigation, updateAuthState }) {
       <AppHeader />
       <View style={styles.container}>
              <SafeAreaView style={styles.mementoListContainer}>
+               <View style={styles.mementoHeaderContainer}>
             <Text style={styles.mementoHeader}>my mementos</Text>
+            </View>
             <FlatList
               data={DATA}
               renderItem={renderItem}
               keyExtractor={(item) => item.id}
-              // extraData={selectedId}
+              extraData={selectedItem}
             />
           </SafeAreaView>
         </View>
         <View style={styles.buttonContainer} >
         <Button
-        style={styles.signOut}
+        style={styles.createMemento}
         title="Create memento"
         color="purple"
         onPress={() => navigation.navigate("CreateMemento")}
@@ -85,11 +91,11 @@ const styles = StyleSheet.create({
   buttonContainer: {
     position: "absolute",
     flexDirection: "row",
-    bottom: 70,
+    top: 80,
     width: width,
     height: 60,
     alignItems: "center",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
   },
   createMementoContainer: {
     position: "absolute",
@@ -102,7 +108,6 @@ const styles = StyleSheet.create({
   },
   createMemento: {
     fontFamily: "serif",
-    fontSize: 20,
     fontWeight: "600",
   },
   signOut: {
@@ -115,28 +120,29 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   mementoHeaderContainer: {
-    position: "absolute",
-    bottom: 400,
+    marginTop: 20,
     width: 300,
     height: 60,
-    color: "purple",
     alignItems: "center",
     justifyContent: "center",
   },
   mementoHeader: {
-    fontFamily: "serif",
-    fontSize: 30,
+    color: "purple",
+    fontSize: 20,
   },
   mementoListContainer: {
+    position: "relative",
     width: width,
-    borderColor: "purple",
-    borderRadius: 10,
-    borderWidth: 2,
     alignItems: "center",
     justifyContent: "center",
   },
   mementoList: {
-    fontFamily: "serif",
+    position: "absolute",
     fontSize: 15,
   },
+  image: {
+    width: 400,
+    height: 200,
+    marginTop: 10,
+  }
 });

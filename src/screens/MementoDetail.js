@@ -1,9 +1,11 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
+import AppHeader from "../components/AppHeader";
 
-const MementoDetail = ({item, }) => {
+const MementoDetail = ({ item }) => {
   return <View>
-    <Text style={styles.text}>test</Text>
+    <AppHeader/>
+    <Text style={styles.text}>{item.title}</Text>
   </View>;
 };
 
