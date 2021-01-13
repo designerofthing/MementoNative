@@ -9,17 +9,19 @@ import {
 } from "react-native";
 import { createMementoModel } from "../../graphql/mutations";
 import AppHeader from "../components/AppHeader";
+import ImagePicker from "../components/ImagePicker";
 
-const CreateMemento = ({ navigation } ) => {
+const CreateMemento = ({ navigation }) => {
   const [mementoTitle, setMementoTitle] = useState("");
   const [mementoDescription, setMementoDescription] = useState("");
-
+  
   const handleTitle = (text) => {
     setMementoTitle(text);
   };
   const handleDescription = (text) => {
     setMementoDescription(text);
   };
+
 
   const handleSubmit = async (mementoTitle, mementoDescription) => {
     let Title = mementoTitle;
@@ -29,7 +31,6 @@ const CreateMemento = ({ navigation } ) => {
       await API.graphql(graphqlOperation(createMementoModel, { input: input }));
       alert(Title + "'s Memento created Successfully! ");
       navigation.navigate("Home");
-     
     } catch (err) {
       console.log("error creating memento:" + err);
     }
@@ -55,6 +56,7 @@ const CreateMemento = ({ navigation } ) => {
         autoCapitalize="none"
         onChangeText={handleDescription}
       />
+      <ImagePicker/>
 
       <TouchableOpacity
         style={styles.submitButton}
