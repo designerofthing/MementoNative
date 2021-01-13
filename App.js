@@ -12,6 +12,8 @@ import Home from "./src/screens/Home";
 import Onboarding from "./src/screens/Onboarding";
 import config from "./aws-exports";
 import MementoDetail from "./src/screens/MementoDetail";
+import CreateMemento from "./src/screens/CreateMemento";
+
 Amplify.configure(config);
 
 function App() {
@@ -54,6 +56,11 @@ function App() {
         <AppStack.Screen name="MementoDetail">
           {screenProps => (
             <MementoDetail {...screenProps} updateAuthState={props.updateAuthState} />
+            )}
+        </AppStack.Screen>
+        <AppStack.Screen name="CreateMemento">
+          {screenProps => (
+            <CreateMemento {...screenProps} updateAuthState={props.updateAuthState} />
             )}
         </AppStack.Screen>
       </AppStack.Navigator>
