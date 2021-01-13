@@ -10,7 +10,7 @@ import {
 import { createMementoModel } from "../../graphql/mutations";
 import AppHeader from "../components/AppHeader";
 
-const CreateMemento = () => {
+const CreateMemento = ({ navigation } ) => {
   const [mementoTitle, setMementoTitle] = useState("");
   const [mementoDescription, setMementoDescription] = useState("");
 
@@ -21,16 +21,18 @@ const CreateMemento = () => {
     setMementoDescription(text);
   };
 
-  
   const handleSubmit = async (mementoTitle, mementoDescription) => {
-    const mementoInput = [mementoTitle, mementoDescription];
+    let Title = mementoTitle;
+    let Description = mementoDescription;
+    const input = { Title, Description };
     try {
-      await API.graphql(graphqlOperation(createMementoModel, {input: mementoInput })
-      )
+      await API.graphql(graphqlOperation(createMementoModel, { input: input }));
+      alert("Memento created Successfully! " + Title);
+      navigation.navigate("Home");
+     
     } catch (err) {
-      console.log('error creating memento:' + err);
+      console.log("error creating memento:" + err);
     }
-    // alert("Title: " + mementoTitle + " Description: " + mementoDescription);
   };
 
   return (
@@ -68,21 +70,23 @@ export default CreateMemento;
 
 const styles = StyleSheet.create({
   container: {
-     paddingTop: 23
+    paddingTop: 23,
   },
   input: {
-     margin: 15,
-     height: 40,
-     borderColor: 'purple',
-     borderWidth: 1
+    textAlign: "center",
+    margin: 15,
+    height: 40,
+    borderColor: "purple",
+    borderWidth: 1,
   },
   submitButton: {
-     backgroundColor: 'purple',
-     padding: 10,
-     margin: 15,
-     height: 40,
+    textAlign: "center",
+    backgroundColor: "purple",
+    padding: 10,
+    margin: 15,
+    height: 40,
   },
-  submitButtonText:{
-     color: 'white'
-  }
-})
+  submitButtonText: {
+    color: "white",
+  },
+});

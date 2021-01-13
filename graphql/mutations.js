@@ -64,17 +64,10 @@ export const createMementoModel = /* GraphQL */ `
       id
       Title
       Description
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      UploadMediaModels {
-        nextToken
-        startedAt
+     
       }
     }
-  }
+  
 `;
 export const updateMementoModel = /* GraphQL */ `
   mutation UpdateMementoModel(
