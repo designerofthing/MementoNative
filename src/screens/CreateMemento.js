@@ -27,7 +27,7 @@ const CreateMemento = ({ navigation } ) => {
     const input = { Title, Description };
     try {
       await API.graphql(graphqlOperation(createMementoModel, { input: input }));
-      alert("Memento created Successfully! " + Title);
+      alert(Title + "'s Memento created Successfully! ");
       navigation.navigate("Home");
      
     } catch (err) {
@@ -41,7 +41,7 @@ const CreateMemento = ({ navigation } ) => {
       <TextInput
         style={styles.input}
         underlineColorAndroid="transparent"
-        placeholder=" Memento Title"
+        placeholder=" Name of Person for Memento"
         placeholderTextColor="purple"
         autoCapitalize="none"
         onChangeText={handleTitle}
