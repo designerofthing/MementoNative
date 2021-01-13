@@ -1,0 +1,15 @@
+projects:
+  MementoNative:
+    schemaPath: amplify/backend/api/MementoNative/build/schema.graphql
+    includes:
+      - src/graphql/**/*.js
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: javascript
+        generatedFileName: ''
+        docsFilePath: /graphql
+        region: eu-west-2
+        apiId: null
+        maxDepth: 2
