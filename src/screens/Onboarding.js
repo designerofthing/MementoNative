@@ -9,9 +9,10 @@ import {
   Image,
 } from "react-native";
 import Swiper from "react-native-swiper/src";
-import mori1 from "../../assets/jean-tuttle-memento-mori.jpg";
-import mori2 from "../../assets/memento-mori.jpg";
-import mori3 from "../../assets/sands-of-time.jpg";
+import onboarding1 from "../../assets/onboarding1.jpg";
+import onboarding2 from "../../assets/onboarding2.jpg";
+import onboarding3 from "../../assets/onboarding3.jpg";
+import onboarding4 from "../../assets/onboarding4.jpg";
 import AppHeader from "../components/AppHeader";
 
 const { width, height } = Dimensions.get("window");
@@ -23,13 +24,16 @@ function Onboarding({ navigation, updateAuthState }) {
       <StatusBar hidden={true} />
       <Swiper>
         <View style={styles.slide}>
-          <Image source={mori1} style={styles.image} />
+          <Image source={onboarding1} style={styles.image} />
         </View>
         <View style={styles.slide}>
-          <Image source={mori2} style={styles.image} />
+          <Image source={onboarding2} style={styles.image} />
         </View>
         <View style={styles.slide}>
-          <Image source={mori3} style={styles.image} />
+          <Image source={onboarding3} style={styles.image} />
+        </View>
+        <View style={styles.slide}>
+          <Image source={onboarding4} style={styles.image} />
         </View>
       </Swiper>
       <View style={styles.textContainer}>

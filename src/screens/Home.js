@@ -67,7 +67,7 @@ export default function Home({ navigation, updateAuthState }) {
         </View>
         <View style={styles.buttonContainer} >
         <Button
-        style={styles.createMemento}
+        style={styles.signOut}
         title="Create memento"
         color="purple"
         onPress={() => navigation.navigate("CreateMemento")}
