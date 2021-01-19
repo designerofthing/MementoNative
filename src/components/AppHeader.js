@@ -18,7 +18,6 @@ export default function AppHeader() {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    backgroundColor: "purple",
     alignItems: "center",
     justifyContent: "center",
     height: 90,
@@ -26,15 +25,15 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "#50055E",
-    fontSize: 50,
+    fontSize: 60,
   },
   text: {
     color: "black",
     fontSize: 20,
   },
   logo: {
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     // #50055E
   },
 });

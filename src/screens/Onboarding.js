@@ -36,7 +36,7 @@ function Onboarding({ navigation, updateAuthState }) {
           <Image source={onboarding4} style={styles.image} />
         </View>
       </Swiper>
-      <View style={styles.textContainer}>
+      <View style={styles.titleContainer}>
           <AppHeader />
       </View>
       <View style={styles.buttonContainer}>
@@ -69,23 +69,21 @@ const styles = StyleSheet.create({
     width: width,
     height: height,
   },
-  textContainer: {
+  titleContainer: {
     position: "absolute",
-    bottom: 200,
+    top: 20,
     marginLeft: 20,
     height: 120,
     alignItems: "flex-start",
     justifyContent: "center",
   },
-  titleContainer: {
+  textContainer: {
     width: 300,
     height: 100,
-    backgroundColor: "purple",
     alignItems: "center",
     justifyContent: "center",
   },
   title: {
-    fontFamily: "serif",
     fontSize: 40,
   },
   subTitleContainer: {
@@ -112,27 +110,28 @@ const styles = StyleSheet.create({
   signupContainer: {
     width: 150,
     height: 60,
-    backgroundColor: "purple",
+    backgroundColor: "#50055E",
     borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
   },
   signup: {
-    fontFamily: "serif",
     fontSize: 20,
-    fontWeight: "600",
+    fontWeight: "500",
+    color: "white",
   },
   loginContainer: {
     width: 150,
     height: 60,
-    borderColor: "purple",
+    borderColor: "#50055E",
     borderRadius: 10,
     borderWidth: 2,
     alignItems: "center",
     justifyContent: "center",
   },
   login: {
-    fontFamily: "serif",
     fontSize: 20,
+    fontWeight: "500",
+    color: "#50055E",
   },
 });
