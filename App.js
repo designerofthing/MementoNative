@@ -1,4 +1,3 @@
-import "react-native-gesture-handler";
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, ActivityIndicator } from "react-native";
 import { useFonts, Taviraj_400Regular } from "@expo-google-fonts/dev";

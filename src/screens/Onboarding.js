@@ -71,10 +71,10 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     position: "absolute",
-    top: 20,
-    marginLeft: 20,
+    top: 10,
     height: 120,
-    alignItems: "flex-start",
+    width: width,
+    alignItems: "center",
     justifyContent: "center",
   },
   textContainer: {

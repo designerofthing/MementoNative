@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { createMementoModel } from "../../graphql/mutations";
 import AppHeader from "../components/AppHeader";
-import ImagePicker from "../components/ImagePicker";
+import ImagePickerComponent from "../components/ImagePickerComponent";
 
 const CreateMemento = ({ navigation }) => {
   const [mementoTitle, setMementoTitle] = useState("");
@@ -56,7 +56,7 @@ const CreateMemento = ({ navigation }) => {
         autoCapitalize="none"
         onChangeText={handleDescription}
       />
-      <ImagePicker/>
+      <ImagePickerComponent />
 
       <TouchableOpacity
         style={styles.submitButton}

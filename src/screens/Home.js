@@ -15,6 +15,7 @@ import AppHeader from "../components/AppHeader";
 import DATA from "../components/MockData";
 
 const Item = ({ item, onPress }) => (
+  <View>
   <TouchableOpacity
     onPress={onPress}
     style={styles.mementoListContainer}
@@ -22,6 +23,7 @@ const Item = ({ item, onPress }) => (
     <Image source={item.image} style={styles.image}/>
     <Text style={styles.mementoList}>{item.title}</Text>
   </TouchableOpacity>
+  </View>
 );
 
 const { width, height } = Dimensions.get("window");
@@ -53,7 +55,7 @@ export default function Home({ navigation, updateAuthState }) {
     <>
       <AppHeader />
       <View style={styles.container}>
-             <SafeAreaView style={styles.mementoListContainer}>
+             <View style={styles.mementoListContainer}>
                <View style={styles.mementoHeaderContainer}>
             <Text style={styles.mementoHeader}>my mementos</Text>
             </View>
@@ -63,7 +65,7 @@ export default function Home({ navigation, updateAuthState }) {
               keyExtractor={(item) => item.id}
               extraData={selectedItem}
             />
-          </SafeAreaView>
+          </View>
         </View>
         <View style={styles.buttonContainer} >
         <Button
