@@ -25,15 +25,19 @@ function Onboarding({ navigation, updateAuthState }) {
       <Swiper>
         <View style={styles.slide}>
           <Image source={onboarding1} style={styles.image} />
+          <Text style={styles.textContainer}>memento is a memorial space to collect and view images and videos of a friend or loved one that has passed away...{"\n"} {"\n"} swipe through to read how it works  </Text>
         </View>
         <View style={styles.slide}>
           <Image source={onboarding2} style={styles.image} />
+          <Text style={styles.textContainer}>Create a memento to preserve the memory of someone special. {"\n"} {"\n"} Then invite their friends and relatives to view and contribute images and videos of that person...</Text>
         </View>
         <View style={styles.slide}>
           <Image source={onboarding3} style={styles.image} />
+          <Text style={styles.textContainer}>The memento creator has control over who can contribute and view the memento. {"\n"} {"\n"} Contributers can view all the images and videos in the person's memento whenever they miss that person...</Text>
         </View>
         <View style={styles.slide}>
           <Image source={onboarding4} style={styles.image} />
+          <Text style={styles.textContainer}>Anyone can create a memento. {"\n"} {"\n"}  To get started, click Sign up to create an account and gain access.</Text>
         </View>
       </Swiper>
       <View style={styles.titleContainer}>
@@ -68,20 +72,28 @@ const styles = StyleSheet.create({
   image: {
     width: width,
     height: height,
+    opacity: 0.5,
   },
   titleContainer: {
     position: "absolute",
-    top: 10,
+    top: 1,
     height: 120,
     width: width,
     alignItems: "center",
     justifyContent: "center",
   },
   textContainer: {
+    position: "absolute",
+    top: 150,
     width: 300,
-    height: 100,
+    height: 300,
     alignItems: "center",
     justifyContent: "center",
+    fontSize: 20,
+    fontWeight: "600",
+    lineHeight: 30,
+    color: "#50055E",
+    textAlign: 'center',
   },
   title: {
     fontSize: 40,
