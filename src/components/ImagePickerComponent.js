@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Image, View, Platform } from "react-native";
-import { Button } from 'react-native-elements';
-import { Permissions, ImagePicker } from "expo";
-// import * as ImagePicker from "expo-image-picker";
+import { Image, View, Platform, StyleSheet, TouchableOpacity, Text } from "react-native";
+import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
 
 export default function ImagePickerComponent() {
@@ -38,11 +36,31 @@ export default function ImagePickerComponent() {
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Button  containerStyle= {{color: 'red'}}
- type="outline" title="Pick an image from camera roll" onPress={pickImage} />
+      <TouchableOpacity onPress={pickImage}>
+          <View style={styles.buttonContainer}>
+            <Text style={styles.buttonText}>Select a profile image</Text>
+          </View>
+        </TouchableOpacity>
       {image && (
         <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
       )}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+
+buttonContainer: {
+  width: 250,
+  height: 40,
+  borderColor: "#50055E",
+  borderRadius: 10,
+  borderWidth: 2,
+  alignItems: "center",
+  justifyContent: "center",
+},
+buttonText: {
+  fontSize: 16,
+  color: "#50055E",
+},
+});

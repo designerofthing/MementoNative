@@ -26,7 +26,9 @@ const CreateMemento = ({ navigation }) => {
   const handleSubmit = async (mementoTitle, mementoDescription) => {
     let Title = mementoTitle;
     let Description = mementoDescription;
-    const input = { Title, Description };
+    let image = ImagePickerComponent.image
+    const input = { Title, Description, image };
+    if (Title.length !== 0 && Description.length !== 0 && image !== null) {
     try {
       await API.graphql(graphqlOperation(createMementoModel, { input: input }));
       alert(Title + "'s Memento created Successfully! ");
@@ -34,6 +36,9 @@ const CreateMemento = ({ navigation }) => {
     } catch (err) {
       console.log("error creating memento:" + err);
     }
+  } else {
+    alert('Please complete all the fields');
+  }
   };
 
   return (
@@ -42,17 +47,18 @@ const CreateMemento = ({ navigation }) => {
       <TextInput
         style={styles.input}
         underlineColorAndroid="transparent"
-        placeholder=" Name of Person for Memento"
-        placeholderTextColor="purple"
+        placeholder=" Loved one's name for memento"
+        placeholderTextColor="#50055E"
         autoCapitalize="none"
         onChangeText={handleTitle}
       />
 
       <TextInput
         style={styles.input}
+        required
         underlineColorAndroid="transparent"
-        placeholder=" Short Description of Memento"
-        placeholderTextColor="purple"
+        placeholder="A short description of them"
+        placeholderTextColor="#50055E"
         autoCapitalize="none"
         onChangeText={handleDescription}
       />
@@ -60,7 +66,7 @@ const CreateMemento = ({ navigation }) => {
 
       <TouchableOpacity
         style={styles.submitButton}
-        onPress={() => handleSubmit(mementoTitle, mementoDescription)}
+        onPress={() => handleSubmit(mementoTitle, mementoDescription, ImagePickerComponent.image)}
       >
         <Text style={styles.submitButtonText}> Submit </Text>
       </TouchableOpacity>
@@ -78,17 +84,20 @@ const styles = StyleSheet.create({
     textAlign: "center",
     margin: 15,
     height: 40,
-    borderColor: "purple",
+    borderColor: "#50055E",
     borderWidth: 1,
+    borderRadius: 5,
   },
   submitButton: {
     textAlign: "center",
-    backgroundColor: "purple",
+    backgroundColor: "#50055E",
     padding: 10,
     margin: 15,
     height: 40,
+    borderRadius: 5,
   },
   submitButtonText: {
     color: "white",
+    fontSize: 16,
   },
 });
