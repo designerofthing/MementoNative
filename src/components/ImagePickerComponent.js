@@ -3,7 +3,7 @@ import { Image, View, Platform, StyleSheet, TouchableOpacity, Text } from "react
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
 
-export default function ImagePickerComponent() {
+export default function ImagePickerComponent({ sendFile }) {
   const [image, setImage] = useState(null);
 
   useEffect(() => {
@@ -31,6 +31,8 @@ export default function ImagePickerComponent() {
 
     if (!result.cancelled) {
       setImage(result.uri);
+      sendFile(result.uri)
+
     }
   };
 

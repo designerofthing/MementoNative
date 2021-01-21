@@ -14,7 +14,8 @@ import ImagePickerComponent from "../components/ImagePickerComponent";
 const CreateMemento = ({ navigation }) => {
   const [mementoTitle, setMementoTitle] = useState("");
   const [mementoDescription, setMementoDescription] = useState("");
-  
+  const [fileURL, setFileURL] = useState('');
+
   const handleTitle = (text) => {
     setMementoTitle(text);
   };
@@ -22,23 +23,41 @@ const CreateMemento = ({ navigation }) => {
     setMementoDescription(text);
   };
 
+  const handleUploadImage = (file) => {
+    console.log(file);
+    setFileURL(file);
+    
+    
+    // const formData = new FormData();
+    // formData.append('file', file);
+    // const newFiles = [...this.state.fileURL]
+    //     this.fileArray.push(URL.createObjectURL(file))
+    //     newFiles.push(file)
+    // this.setState({fileURL: newFiles}, () => {
 
-  const handleSubmit = async (mementoTitle, mementoDescription) => {
+    // });
+
+};
+
+  const handleSubmit = async (mementoTitle, mementoDescription, fileURL) => {
     let Title = mementoTitle;
     let Description = mementoDescription;
-    let image = ImagePickerComponent.image
-    const input = { Title, Description, image };
-    if (Title.length !== 0 && Description.length !== 0 && image !== null) {
-    try {
-      await API.graphql(graphqlOperation(createMementoModel, { input: input }));
-      alert(Title + "'s Memento created Successfully! ");
-      navigation.navigate("Home");
-    } catch (err) {
-      console.log("error creating memento:" + err);
+    let ProfileImage = fileURL;
+    console.log(ProfileImage);
+    const input = { Title, Description, ProfileImage };
+    if (Title.length !== 0 && Description.length !== 0 && ProfileImage !== undefined) {
+      try {
+        await API.graphql(
+          graphqlOperation(createMementoModel, { input: input })
+        );
+        alert(Title + "'s Memento created Successfully! ");
+        navigation.navigate("Home");
+      } catch (err) {
+        console.log("error creating memento:" + err);
+      }
+    } else {
+      alert("Please complete all the fields");
     }
-  } else {
-    alert('Please complete all the fields');
-  }
   };
 
   return (
@@ -62,11 +81,17 @@ const CreateMemento = ({ navigation }) => {
         autoCapitalize="none"
         onChangeText={handleDescription}
       />
-      <ImagePickerComponent />
+      <ImagePickerComponent sendFile={handleUploadImage}/>
 
       <TouchableOpacity
         style={styles.submitButton}
-        onPress={() => handleSubmit(mementoTitle, mementoDescription, ImagePickerComponent.image)}
+        onPress={() =>
+          handleSubmit(
+            mementoTitle,
+            mementoDescription,
+            fileURL
+          )
+        }
       >
         <Text style={styles.submitButtonText}> Submit </Text>
       </TouchableOpacity>
