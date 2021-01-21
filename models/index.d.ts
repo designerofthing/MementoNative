@@ -18,6 +18,7 @@ export declare class MementoModel {
   readonly Title?: string;
   readonly Description?: string;
   readonly UploadMediaModels?: (UploadMediaModel | null)[];
+  readonly ProfileImage?: string;
   constructor(init: ModelInit<MementoModel>);
   static copyOf(source: MementoModel, mutator: (draft: MutableModel<MementoModel>) => MutableModel<MementoModel> | void): MementoModel;
 }

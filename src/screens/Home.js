@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -11,35 +11,44 @@ import {
   Image,
 } from "react-native";
 import { Auth } from "aws-amplify";
+import { DataStore } from "@aws-amplify/datastore";
+import { MementoModel } from "../../models";
 import AppHeader from "../components/AppHeader";
-import DATA from "../components/MockData";
 
 const Item = ({ item, onPress }) => (
   <View>
-  <TouchableOpacity
-    onPress={onPress}
-    style={styles.mementoListContainer}
-  >
-    <Image source={item.image} style={styles.image}/>
-    <Text style={styles.mementoList}>{item.title}</Text>
-  </TouchableOpacity>
+    <TouchableOpacity onPress={onPress} style={styles.mementoListContainer}>
+      <Image source={item.ProfileImage} style={styles.image} />
+      <Text style={styles.mementoTitle}>{item.Title}</Text>
+      <Text style={styles.mementoDescription}>{item.Description}</Text>
+    </TouchableOpacity>
   </View>
 );
 
 const { width, height } = Dimensions.get("window");
 
 export default function Home({ navigation, updateAuthState }) {
-  const [selectedItem, setSelectedItem] = useState(null);
+  
+  const [ selectedItem, setSelectedItem ] = useState(null);
+  const [ mementoList, setMementoList ] = useState([]); 
 
- const _onPressItem = (item) => {
+  const getMementos = async () => {
+    let mementos = await DataStore.query(MementoModel);
+    console.log(mementos);
+    setMementoList(mementos)
+  };
+
+  useEffect(() => {
+    getMementos();
+  }, []);
+
+  const _onPressItem = (item) => {
     setSelectedItem(item);
-    navigation.navigate("MementoDetail", {item: selectedItem})
-  }
+    navigation.navigate("MementoDetail", { item: selectedItem });
+  };
 
-  const renderItem = ({ item }) => { 
-    return ( 
-      <Item item={item} onPress={() => _onPressItem(selectedItem)}  />
-    );
+  const renderItem = ({ item }) => {
+    return <Item item={item} onPress={() => _onPressItem(selectedItem)} />;
   };
 
   async function signOut() {
@@ -55,32 +64,32 @@ export default function Home({ navigation, updateAuthState }) {
     <>
       <AppHeader />
       <View style={styles.container}>
-             <View style={styles.mementoListContainer}>
-               <View style={styles.mementoHeaderContainer}>
+        <View style={styles.mementoListContainer}>
+          <View style={styles.mementoHeaderContainer}>
             <Text style={styles.mementoHeader}>my mementos</Text>
-            </View>
-            <FlatList
-              data={DATA}
-              renderItem={renderItem}
-              keyExtractor={(item) => item.id}
-              extraData={selectedItem}
-            />
           </View>
+          <FlatList
+            data={mementoList}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            extraData={selectedItem}
+          />
         </View>
-        <View style={styles.buttonContainer} >
+      </View>
+      <View style={styles.buttonContainer}>
         <Button
-        style={styles.signOut}
-        title="Create memento"
-        color="purple"
-        onPress={() => navigation.navigate("CreateMemento")}
-      />
+          style={styles.signOut}
+          title="Create memento"
+          color="purple"
+          onPress={() => navigation.navigate("CreateMemento")}
+        />
         <Button
           style={styles.signOut}
           title="Sign Out"
           color="purple"
           onPress={signOut}
-        /> 
-     </View>
+        />
+      </View>
     </>
   );
 }
@@ -135,16 +144,23 @@ const styles = StyleSheet.create({
   mementoListContainer: {
     position: "relative",
     width: width,
+    marginBottom: 20,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
   },
-  mementoList: {
+  mementoTitle: {
     position: "absolute",
+    top: 20,
+    justifyContent: "flex-start",
+    fontSize: 20,
+  },
+  mementoDescription: {
+    position: "relative",
     fontSize: 15,
   },
   image: {
     width: 400,
     height: 200,
     marginTop: 10,
-  }
+  },
 });

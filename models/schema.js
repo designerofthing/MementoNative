@@ -103,6 +103,13 @@ export const schema = {
                         "connectionType": "HAS_MANY",
                         "associatedWith": "mementomodelID"
                     }
+                },
+                "ProfileImage": {
+                    "name": "ProfileImage",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -133,5 +140,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "37beceba47b6197977eec7a45f96fb78"
+    "version": "1ec6ca4b7eafd145c2fa4478477709f8"
 };
