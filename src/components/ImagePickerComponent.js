@@ -44,7 +44,7 @@ export default function ImagePickerComponent({ sendFile }) {
           </View>
         </TouchableOpacity>
       {image && (
-        <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
+        <Image source={{ uri: image }} style={{ marginTop: 20, width: 200, height: 200 }} />
       )}
     </View>
   );

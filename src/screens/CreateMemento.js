@@ -69,6 +69,7 @@ const CreateMemento = ({ navigation }) => {
         placeholder=" Loved one's name for memento"
         placeholderTextColor="#50055E"
         autoCapitalize="none"
+        allowFontScaling
         onChangeText={handleTitle}
       />
 
@@ -79,6 +80,7 @@ const CreateMemento = ({ navigation }) => {
         placeholder="A short description of them"
         placeholderTextColor="#50055E"
         autoCapitalize="none"
+        allowFontScaling
         onChangeText={handleDescription}
       />
       <ImagePickerComponent sendFile={handleUploadImage}/>
