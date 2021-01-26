@@ -1,6 +1,6 @@
 {
   "auth": {
-    "mementonative7e081602": {
+    "MementoNative": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],

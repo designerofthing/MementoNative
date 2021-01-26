@@ -18,7 +18,7 @@ import AppHeader from "../components/AppHeader";
 const Item = ({ item, onPress }) => (
   <View>
     <TouchableOpacity onPress={onPress} style={styles.mementoListContainer}>
-      <Image source={item.ProfileImage} style={styles.image} />
+      <Image source={item.ProfileImage} resizeMode="cover" style={styles.image} />
       <Text style={styles.mementoTitle}>{item.Title}</Text>
       <Text style={styles.mementoDescription}>{item.Description}</Text>
     </TouchableOpacity>
@@ -31,6 +31,10 @@ export default function Home({ navigation, updateAuthState }) {
   
   const [ selectedItem, setSelectedItem ] = useState(null);
   const [ mementoList, setMementoList ] = useState([]); 
+  
+  useEffect(() => {
+    getMementos();
+  }, []);
 
   const getMementos = async () => {
     let mementos = await DataStore.query(MementoModel);
@@ -38,9 +42,6 @@ export default function Home({ navigation, updateAuthState }) {
     setMementoList(mementos)
   };
 
-  useEffect(() => {
-    getMementos();
-  }, []);
 
   const _onPressItem = (item) => {
     setSelectedItem(item);
@@ -160,7 +161,8 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 400,
-    height: 200,
+    height: 300,
     marginTop: 10,
+    borderRadius: 10,
   },
 });

@@ -14,7 +14,7 @@ import ImagePickerComponent from "../components/ImagePickerComponent";
 const CreateMemento = ({ navigation }) => {
   const [mementoTitle, setMementoTitle] = useState("");
   const [mementoDescription, setMementoDescription] = useState("");
-  const [fileURL, setFileURL] = useState('');
+  const [fileURL, setFileURL] = useState("");
 
   const handleTitle = (text) => {
     setMementoTitle(text);
@@ -26,8 +26,7 @@ const CreateMemento = ({ navigation }) => {
   const handleUploadImage = (file) => {
     console.log(file);
     setFileURL(file);
-    
-    
+
     // const formData = new FormData();
     // formData.append('file', file);
     // const newFiles = [...this.state.fileURL]
@@ -36,8 +35,7 @@ const CreateMemento = ({ navigation }) => {
     // this.setState({fileURL: newFiles}, () => {
 
     // });
-
-};
+  };
 
   const handleSubmit = async (mementoTitle, mementoDescription, fileURL) => {
     let Title = mementoTitle;
@@ -45,7 +43,11 @@ const CreateMemento = ({ navigation }) => {
     let ProfileImage = fileURL;
     console.log(ProfileImage);
     const input = { Title, Description, ProfileImage };
-    if (Title.length !== 0 && Description.length !== 0 && ProfileImage !== undefined) {
+    if (
+      Title.length !== 0 &&
+      Description.length !== 0 &&
+      ProfileImage !== undefined
+    ) {
       try {
         await API.graphql(
           graphqlOperation(createMementoModel, { input: input })
@@ -83,17 +85,11 @@ const CreateMemento = ({ navigation }) => {
         allowFontScaling
         onChangeText={handleDescription}
       />
-      <ImagePickerComponent sendFile={handleUploadImage}/>
+      <ImagePickerComponent sendFile={handleUploadImage} />
 
       <TouchableOpacity
         style={styles.submitButton}
-        onPress={() =>
-          handleSubmit(
-            mementoTitle,
-            mementoDescription,
-            fileURL
-          )
-        }
+        onPress={() => handleSubmit(mementoTitle, mementoDescription, fileURL)}
       >
         <Text style={styles.submitButtonText}> Submit </Text>
       </TouchableOpacity>
