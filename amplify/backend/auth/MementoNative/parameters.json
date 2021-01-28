@@ -4,7 +4,7 @@
     "resourceNameTruncated": "mementf1d4f348",
     "userPoolName": "MementoNative",
     "autoVerifiedAttributes": [
-        "phone_number"
+        "email"
     ],
     "mfaConfiguration": "OFF",
     "mfaTypes": [
@@ -12,8 +12,8 @@
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Forgot password code: {####}",
-    "emailVerificationSubject": "Your verification code",
-    "emailVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Subject {####}",
+    "emailVerificationMessage": "Body {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [
@@ -59,7 +59,6 @@
     "userPoolGroupList": [],
     "adminQueries": false,
     "thirdPartyAuth": false,
-    "authProviders": [],
     "hostedUI": true,
     "hostedUIDomainName": "jmmnio7j3xvt",
     "authProvidersUserPool": [

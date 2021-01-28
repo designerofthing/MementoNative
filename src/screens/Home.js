@@ -33,12 +33,13 @@ export default function Home({ navigation, updateAuthState }) {
   const [ mementoList, setMementoList ] = useState([]); 
   
   useEffect(() => {
+    const ac = new AbortController();
     getMementos();
+    return () => ac.abort();
   }, []);
 
   const getMementos = async () => {
     let mementos = await DataStore.query(MementoModel);
-    console.log(mementos);
     setMementoList(mementos)
   };
 
