@@ -19,7 +19,7 @@ const Item = ({ item, onPress }) => (
   <View>
     <TouchableOpacity onPress={onPress} style={styles.mementoListContainer}>
       <Image source={item.ProfileImage} resizeMode="cover" style={styles.image} />
-      <Text style={styles.mementoTitle}>{item.Title}</Text>
+      <Text style={styles.mementoTitle}>{item.Title}'s memento</Text>
       <Text style={styles.mementoDescription}>{item.Description}</Text>
     </TouchableOpacity>
   </View>
@@ -29,7 +29,6 @@ const { width, height } = Dimensions.get("window");
 
 export default function Home({ navigation, updateAuthState }) {
   
-  const [ selectedItem, setSelectedItem ] = useState(null);
   const [ mementoList, setMementoList ] = useState([]); 
   
   useEffect(() => {
@@ -45,12 +44,11 @@ export default function Home({ navigation, updateAuthState }) {
 
 
   const _onPressItem = (item) => {
-    setSelectedItem(item);
-    navigation.navigate("MementoDetail", { item: selectedItem });
+    navigation.navigate("MementoDetail", {item});
   };
 
   const renderItem = ({ item }) => {
-    return <Item item={item} onPress={() => _onPressItem(selectedItem)} />;
+    return <Item item={item} onPress={() => _onPressItem(item)} />;
   };
 
   async function signOut() {
@@ -74,7 +72,6 @@ export default function Home({ navigation, updateAuthState }) {
             data={mementoList}
             renderItem={renderItem}
             keyExtractor={(item) => item.id}
-            extraData={selectedItem}
           />
         </View>
       </View>
@@ -82,13 +79,13 @@ export default function Home({ navigation, updateAuthState }) {
         <Button
           style={styles.signOut}
           title="Create memento"
-          color="purple"
+          color="#50055E"
           onPress={() => navigation.navigate("CreateMemento")}
         />
         <Button
           style={styles.signOut}
           title="Sign Out"
-          color="purple"
+          color="#50055E"
           onPress={signOut}
         />
       </View>
@@ -114,7 +111,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: 150,
     height: 60,
-    backgroundColor: "purple",
+    backgroundColor: "#50055E",
     borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
@@ -127,7 +124,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: 150,
     height: 60,
-    backgroundColor: "purple",
+    backgroundColor: "#50055E",
     borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
@@ -140,8 +137,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   mementoHeader: {
-    color: "purple",
-    fontSize: 20,
+    color: "#50055E",
+    fontSize: 40,
   },
   mementoListContainer: {
     position: "relative",
@@ -151,7 +148,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   mementoTitle: {
-    position: "absolute",
     top: 20,
     justifyContent: "flex-start",
     fontSize: 20,

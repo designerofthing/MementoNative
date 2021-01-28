@@ -1,11 +1,16 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Image } from "react-native";
+import { StackRouter } from "react-navigation";
 import AppHeader from "../components/AppHeader";
 
-const MementoDetail = ({ item }) => {
+const MementoDetail = ({route }) => {
   return <View>
     <AppHeader/>
-    <Text style={styles.text}>{item.title}</Text>
+    <View style={styles.mementoContainer}>
+    <Image source={route.params.item.ProfileImage} resizeMode="cover" style={styles.image} />
+      <Text style={styles.mementoTitle}>{route.params.item.Title}'s memento</Text>
+      <Text style={styles.mementoDescription}>{route.params.item.Description}</Text>
+      </View>
   </View>;
 };
 
@@ -27,5 +32,26 @@ const styles = StyleSheet.create({
     fontFamily: "Taviraj",
     color: "silver",
     fontSize: 50,
+  },
+  mementoContainer: {
+    position: "relative",
+    marginBottom: 20,
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  mementoTitle: {
+    justifyContent: "flex-start",
+    fontSize: 30,
+    paddingBottom: 10,
+  },
+  mementoDescription: {
+    position: "relative",
+    fontSize: 15,
+  },
+  image: {
+    width: 100,
+    height: 200,
+    marginTop: 10,
+    borderRadius: 10,
   },
 });

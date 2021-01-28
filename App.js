@@ -54,7 +54,7 @@ function App() {
         </AppStack.Screen>
         <AppStack.Screen name="MementoDetail">
           {screenProps => (
-            <MementoDetail {...screenProps} updateAuthState={props.updateAuthState} />
+            <MementoDetail  {...screenProps} updateAuthState={props.updateAuthState} />
             )}
         </AppStack.Screen>
         <AppStack.Screen name="CreateMemento">
