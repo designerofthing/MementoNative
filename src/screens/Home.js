@@ -34,7 +34,7 @@ export default function Home({ navigation, updateAuthState }) {
   useEffect(() => {
     const ac = new AbortController();
     getMementos();
-    return () => ac.abort();
+    return () => {ac.abort();}
   }, []);
 
   const getMementos = async () => {

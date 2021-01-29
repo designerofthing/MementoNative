@@ -4,15 +4,25 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  Dimensions,
   Image,
   TouchableOpacity,
+  FlatList,
 } from "react-native";
 import Amplify, { Auth, API, graphqlOperation } from "aws-amplify";
+import { DataStore } from "@aws-amplify/datastore";
+import { UploadMediaModel } from "../../models";
+
 import { createUploadMediaModel } from "../../graphql/mutations";
 import ImagePickerComponent from "../components/ImagePickerComponent";
 import AppHeader from "../components/AppHeader";
 
+
+const { width, height } = Dimensions.get("window");
+
+
 const MementoDetail = ({ route }) => {
+  const [ mementoMedia, setMementoMedia ] = useState([]); 
   const [fileURL, setFileURL] = useState("");
   const [Uploader, setUploader] = useState("");
   const [mementoTitle, setMementoTitle] = useState("");
@@ -22,12 +32,26 @@ const MementoDetail = ({ route }) => {
     setUploader(response.attributes.email);
   };
 
+  const getMementos = async () => {
+    let mementos = await DataStore.query(UploadMediaModel);
+    setMementoMedia(mementos)
+  };
+
   useEffect(() => {
+    const ac = new AbortController();
     getUser();
+    getMementos();
     return () => {
-      
+      ac.abort()
     };
   }, []);
+
+  const renderItem = ({ item }) => {
+    return <View style={styles.mementoMediaContainer}>
+      <Image source={item.Contribution} resizeMode="cover" style={styles.image} />
+    <Text style={styles.mementoTitle}>{item.Title}</Text>
+    </View>
+  };
 
   const handleTitle = (text) => {
     setMementoTitle(text);
@@ -73,7 +97,7 @@ const MementoDetail = ({ route }) => {
         <Image
           source={route.params.item.ProfileImage}
           resizeMode="cover"
-          style={styles.image}
+          style={styles.profileImage}
         />
         <Text style={styles.mementoTitle}>
           {route.params.item.Title}'s memento
@@ -82,6 +106,11 @@ const MementoDetail = ({ route }) => {
           {route.params.item.Description}
         </Text>
       </View>
+      <FlatList
+            data={mementoMedia}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+          />
       <ImagePickerComponent
         sendFile={handleUploadImage}
         buttonText={"Contribute to this memento"}
@@ -139,9 +168,22 @@ const styles = StyleSheet.create({
     position: "relative",
     fontSize: 15,
   },
-  image: {
+  profileImage: {
     width: 100,
     height: 200,
+    marginTop: 10,
+    borderRadius: 10,
+  },
+  mementoMediaContainer: {
+    position: "relative",
+    width: width,
+    marginBottom: 20,
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  image: {
+    width: 400,
+    height: 300,
     marginTop: 10,
     borderRadius: 10,
   },
