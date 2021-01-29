@@ -4,9 +4,11 @@ import { schema } from './schema';
 
 
 
-const { UploadMediaModel, MementoModel } = initSchema(schema);
+const { UploadMediaModel, MementoModel, Picture, S3Object } = initSchema(schema);
 
 export {
   UploadMediaModel,
-  MementoModel
+  MementoModel,
+  Picture,
+  S3Object
 };

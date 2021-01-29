@@ -2,7 +2,12 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
-
+export declare class S3Object {
+  readonly bucket: string;
+  readonly region: string;
+  readonly key: string;
+  constructor(init: ModelInit<S3Object>);
+}
 
 export declare class UploadMediaModel {
   readonly id: string;
@@ -22,4 +27,13 @@ export declare class MementoModel {
   readonly ProfileImage?: string;
   constructor(init: ModelInit<MementoModel>);
   static copyOf(source: MementoModel, mutator: (draft: MutableModel<MementoModel>) => MutableModel<MementoModel> | void): MementoModel;
+}
+
+export declare class Picture {
+  readonly id: string;
+  readonly name?: string;
+  readonly owner?: string;
+  readonly file?: S3Object;
+  constructor(init: ModelInit<Picture>);
+  static copyOf(source: Picture, mutator: (draft: MutableModel<Picture>) => MutableModel<Picture> | void): Picture;
 }

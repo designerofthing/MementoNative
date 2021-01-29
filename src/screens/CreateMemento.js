@@ -1,4 +1,4 @@
-import { API, graphqlOperation } from "aws-amplify";
+import { Storage, API, graphqlOperation } from "aws-amplify";
 import React, { useState } from "react";
 import {
   View,
@@ -26,6 +26,7 @@ const CreateMemento = ({ navigation }) => {
   const handleUploadImage = (file) => {
     console.log(file);
     setFileURL(file);
+    Storage.put(file.name, file, {contentType: 'image'})
 
     // const formData = new FormData();
     // formData.append('file', file);

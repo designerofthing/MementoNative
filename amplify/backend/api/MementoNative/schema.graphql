@@ -13,4 +13,18 @@ type MementoModel @model @auth(rules: [{allow: public}]) {
   UploadMediaModels: [UploadMediaModel] @connection(keyName: "byMementoModel", fields: ["id"])
   ProfileImage: String
 }
- 
+
+type S3Object {
+  bucket: String!
+  region: String!
+  key: String!
+}
+
+type Picture @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  owner: String
+
+  # Reference the S3Object type from a field.
+  file: S3Object
+}

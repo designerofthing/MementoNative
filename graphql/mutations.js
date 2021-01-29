@@ -11,6 +11,7 @@ export const createUploadMediaModel = /* GraphQL */ `
       Uploader
       Title
       mementomodelID
+      Contribution
       _version
       _deleted
       _lastChangedAt
@@ -29,6 +30,7 @@ export const updateUploadMediaModel = /* GraphQL */ `
       Uploader
       Title
       mementomodelID
+      Contribution
       _version
       _deleted
       _lastChangedAt
@@ -47,6 +49,7 @@ export const deleteUploadMediaModel = /* GraphQL */ `
       Uploader
       Title
       mementomodelID
+      Contribution
       _version
       _deleted
       _lastChangedAt
@@ -64,6 +67,7 @@ export const createMementoModel = /* GraphQL */ `
       id
       Title
       Description
+      ProfileImage
       _version
       _deleted
       _lastChangedAt
@@ -85,6 +89,7 @@ export const updateMementoModel = /* GraphQL */ `
       id
       Title
       Description
+      ProfileImage
       _version
       _deleted
       _lastChangedAt
@@ -106,6 +111,7 @@ export const deleteMementoModel = /* GraphQL */ `
       id
       Title
       Description
+      ProfileImage
       _version
       _deleted
       _lastChangedAt
@@ -115,6 +121,72 @@ export const deleteMementoModel = /* GraphQL */ `
         nextToken
         startedAt
       }
+    }
+  }
+`;
+export const createPicture = /* GraphQL */ `
+  mutation CreatePicture(
+    $input: CreatePictureInput!
+    $condition: ModelPictureConditionInput
+  ) {
+    createPicture(input: $input, condition: $condition) {
+      id
+      name
+      owner
+      file {
+        bucket
+        region
+        key
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updatePicture = /* GraphQL */ `
+  mutation UpdatePicture(
+    $input: UpdatePictureInput!
+    $condition: ModelPictureConditionInput
+  ) {
+    updatePicture(input: $input, condition: $condition) {
+      id
+      name
+      owner
+      file {
+        bucket
+        region
+        key
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deletePicture = /* GraphQL */ `
+  mutation DeletePicture(
+    $input: DeletePictureInput!
+    $condition: ModelPictureConditionInput
+  ) {
+    deletePicture(input: $input, condition: $condition) {
+      id
+      name
+      owner
+      file {
+        bucket
+        region
+        key
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
     }
   }
 `;

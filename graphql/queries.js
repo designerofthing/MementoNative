@@ -8,6 +8,7 @@ export const getUploadMediaModel = /* GraphQL */ `
       Uploader
       Title
       mementomodelID
+      Contribution
       _version
       _deleted
       _lastChangedAt
@@ -32,6 +33,7 @@ export const listUploadMediaModels = /* GraphQL */ `
         Uploader
         Title
         mementomodelID
+        Contribution
         _version
         _deleted
         _lastChangedAt
@@ -61,6 +63,7 @@ export const syncUploadMediaModels = /* GraphQL */ `
         Uploader
         Title
         mementomodelID
+        Contribution
         _version
         _deleted
         _lastChangedAt
@@ -78,6 +81,7 @@ export const getMementoModel = /* GraphQL */ `
       id
       Title
       Description
+      ProfileImage
       _version
       _deleted
       _lastChangedAt
@@ -101,6 +105,7 @@ export const listMementoModels = /* GraphQL */ `
         id
         Title
         Description
+        ProfileImage
         _version
         _deleted
         _lastChangedAt
@@ -129,6 +134,76 @@ export const syncMementoModels = /* GraphQL */ `
         id
         Title
         Description
+        ProfileImage
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getPicture = /* GraphQL */ `
+  query GetPicture($id: ID!) {
+    getPicture(id: $id) {
+      id
+      name
+      owner
+      file {
+        bucket
+        region
+        key
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listPictures = /* GraphQL */ `
+  query ListPictures(
+    $filter: ModelPictureFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPictures(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        owner
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncPictures = /* GraphQL */ `
+  query SyncPictures(
+    $filter: ModelPictureFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncPictures(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        name
+        owner
         _version
         _deleted
         _lastChangedAt

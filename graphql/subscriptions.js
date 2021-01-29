@@ -8,6 +8,7 @@ export const onCreateUploadMediaModel = /* GraphQL */ `
       Uploader
       Title
       mementomodelID
+      Contribution
       _version
       _deleted
       _lastChangedAt
@@ -23,6 +24,7 @@ export const onUpdateUploadMediaModel = /* GraphQL */ `
       Uploader
       Title
       mementomodelID
+      Contribution
       _version
       _deleted
       _lastChangedAt
@@ -38,6 +40,7 @@ export const onDeleteUploadMediaModel = /* GraphQL */ `
       Uploader
       Title
       mementomodelID
+      Contribution
       _version
       _deleted
       _lastChangedAt
@@ -52,6 +55,7 @@ export const onCreateMementoModel = /* GraphQL */ `
       id
       Title
       Description
+      ProfileImage
       _version
       _deleted
       _lastChangedAt
@@ -70,6 +74,7 @@ export const onUpdateMementoModel = /* GraphQL */ `
       id
       Title
       Description
+      ProfileImage
       _version
       _deleted
       _lastChangedAt
@@ -88,6 +93,7 @@ export const onDeleteMementoModel = /* GraphQL */ `
       id
       Title
       Description
+      ProfileImage
       _version
       _deleted
       _lastChangedAt
@@ -97,6 +103,63 @@ export const onDeleteMementoModel = /* GraphQL */ `
         nextToken
         startedAt
       }
+    }
+  }
+`;
+export const onCreatePicture = /* GraphQL */ `
+  subscription OnCreatePicture {
+    onCreatePicture {
+      id
+      name
+      owner
+      file {
+        bucket
+        region
+        key
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdatePicture = /* GraphQL */ `
+  subscription OnUpdatePicture {
+    onUpdatePicture {
+      id
+      name
+      owner
+      file {
+        bucket
+        region
+        key
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeletePicture = /* GraphQL */ `
+  subscription OnDeletePicture {
+    onDeletePicture {
+      id
+      name
+      owner
+      file {
+        bucket
+        region
+        key
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
     }
   }
 `;

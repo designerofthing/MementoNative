@@ -17,12 +17,10 @@ import { createUploadMediaModel } from "../../graphql/mutations";
 import ImagePickerComponent from "../components/ImagePickerComponent";
 import AppHeader from "../components/AppHeader";
 
-
 const { width, height } = Dimensions.get("window");
 
-
-const MementoDetail = ({ route }) => {
-  const [ mementoMedia, setMementoMedia ] = useState([]); 
+const MementoDetail = ({ route, navigation }) => {
+  const [mementoMedia, setMementoMedia] = useState([]);
   const [fileURL, setFileURL] = useState("");
   const [Uploader, setUploader] = useState("");
   const [mementoTitle, setMementoTitle] = useState("");
@@ -34,7 +32,7 @@ const MementoDetail = ({ route }) => {
 
   const getMementos = async () => {
     let mementos = await DataStore.query(UploadMediaModel);
-    setMementoMedia(mementos)
+    setMementoMedia(mementos);
   };
 
   useEffect(() => {
@@ -42,15 +40,21 @@ const MementoDetail = ({ route }) => {
     getUser();
     getMementos();
     return () => {
-      ac.abort()
+      ac.abort();
     };
   }, []);
 
   const renderItem = ({ item }) => {
-    return <View style={styles.mementoMediaContainer}>
-      <Image source={item.Contribution} resizeMode="cover" style={styles.image} />
-    <Text style={styles.mementoTitle}>{item.Title}</Text>
-    </View>
+    return (
+      <View style={styles.mementoMediaContainer}>
+        <Image
+          source={item.Contribution}
+          resizeMode="cover"
+          style={styles.image}
+        />
+        <Text style={styles.mementoTitle}>{item.Title}</Text>
+      </View>
+    );
   };
 
   const handleTitle = (text) => {
@@ -59,21 +63,19 @@ const MementoDetail = ({ route }) => {
 
   const handleUploadImage = (file) => {
     setFileURL(file);
-
-  }
-    const handleSubmit = async (mementoTitle, Uploader, fileURL) => {
-      let mementomodelID = route.params.item.id
-      debugger
-      let Title = mementoTitle;
+  };
+  const handleSubmit = async (mementoTitle, Uploader, fileURL) => {
+    let mementomodelID = route.params.item.id;
+    let Title = mementoTitle;
     let Contribution = fileURL;
     const input = { Uploader, Title, Contribution, mementomodelID };
-    if (Contribution !== undefined && Title.length !== 0 ) {
+    if (Contribution !== undefined && Title.length !== 0) {
       try {
         await API.graphql(
           graphqlOperation(createUploadMediaModel, { input: input })
         );
-        alert("memento updated successfully! ");
-        getFiles();
+        alert("memento updated successfully!");
+        // navigation.navigate("MementoDetail");
       } catch (err) {
         console.log("error creating memento:" + err);
       }
@@ -107,29 +109,35 @@ const MementoDetail = ({ route }) => {
         </Text>
       </View>
       <FlatList
-            data={mementoMedia}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-          />
+        horizontal
+        data={mementoMedia}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        ItemSeparatorComponent={() => <View style={{ width: 30 }} />}
+      />
       <ImagePickerComponent
         sendFile={handleUploadImage}
         buttonText={"Contribute to this memento"}
       />
-      {fileURL !== "" && <View style={styles.inputContainer}>
-        <TextInput
-    style={styles.input}
-    underlineColorAndroid="transparent"    placeholder=" Title for contribution"
-    placeholderTextColor="#50055E"
-    autoCapitalize="none"
-    allowFontScaling
-    onChangeText={handleTitle}
-    /> 
-    <TouchableOpacity
-        style={styles.submitButton}
-        onPress={() => handleSubmit(mementoTitle, Uploader, fileURL)}
-      >
-        <Text style={styles.submitButtonText}> Submit </Text>
-      </TouchableOpacity></View>}
+      {fileURL !== "" && (
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            underlineColorAndroid="transparent"
+            placeholder=" Title for contribution"
+            placeholderTextColor="#50055E"
+            autoCapitalize="none"
+            allowFontScaling
+            onChangeText={handleTitle}
+          />
+          <TouchableOpacity
+            style={styles.submitButton}
+            onPress={() => handleSubmit(mementoTitle, Uploader, fileURL)}
+          >
+            <Text style={styles.submitButtonText}> Submit </Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 };
@@ -170,7 +178,7 @@ const styles = StyleSheet.create({
   },
   profileImage: {
     width: 100,
-    height: 200,
+    height: 100,
     marginTop: 10,
     borderRadius: 10,
   },
@@ -184,11 +192,12 @@ const styles = StyleSheet.create({
   image: {
     width: 400,
     height: 300,
-    marginTop: 10,
     borderRadius: 10,
   },
   inputContainer: {
-    alignItems: 'center', justifyContent: 'center', flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    flex: 1,
   },
   input: {
     position: "relative",
