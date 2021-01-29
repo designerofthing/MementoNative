@@ -34,7 +34,9 @@ export const schema = {
                 "Contribution": {
                     "name": "Contribution",
                     "isArray": false,
-                    "type": "String",
+                    "type": {
+                        "nonModel": "S3Object"
+                    },
                     "isRequired": false,
                     "attributes": []
                 }
@@ -114,7 +116,9 @@ export const schema = {
                 "ProfileImage": {
                     "name": "ProfileImage",
                     "isArray": false,
-                    "type": "String",
+                    "type": {
+                        "nonModel": "S3Object"
+                    },
                     "isRequired": false,
                     "attributes": []
                 }
@@ -233,5 +237,5 @@ export const schema = {
             }
         }
     },
-    "version": "66a665c888f4c42beb02dee59d6b049d"
+    "version": "8cd39eb2fd10665183245495197693e1"
 };

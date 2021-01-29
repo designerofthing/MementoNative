@@ -3,7 +3,7 @@ type UploadMediaModel @model @auth(rules: [{allow: public}]) @key(name: "byMemen
   Uploader: String
   Title: String
   mementomodelID: ID!
-  Contribution: String
+  Contribution: S3Object 
 }
 
 type MementoModel @model @auth(rules: [{allow: public}]) {
@@ -11,7 +11,7 @@ type MementoModel @model @auth(rules: [{allow: public}]) {
   Title: String
   Description: String
   UploadMediaModels: [UploadMediaModel] @connection(keyName: "byMementoModel", fields: ["id"])
-  ProfileImage: String
+  ProfileImage: S3Object
 }
 
 type S3Object {
@@ -24,7 +24,6 @@ type Picture @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
   owner: String
-
-  # Reference the S3Object type from a field.
   file: S3Object
 }
+ 

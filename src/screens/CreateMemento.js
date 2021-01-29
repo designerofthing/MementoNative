@@ -8,8 +8,12 @@ import {
   StyleSheet,
 } from "react-native";
 import { createMementoModel } from "../../graphql/mutations";
+import awsExports from "../../aws-exports"
 import AppHeader from "../components/AppHeader";
 import ImagePickerComponent from "../components/ImagePickerComponent";
+import { DataStore } from '@aws-amplify/datastore';
+import { MementoModel } from '../../models';
+
 
 const CreateMemento = ({ navigation }) => {
   const [mementoTitle, setMementoTitle] = useState("");
@@ -24,10 +28,10 @@ const CreateMemento = ({ navigation }) => {
   };
 
   const handleUploadImage = (file) => {
-    console.log(file);
     setFileURL(file);
-    Storage.put(file.name, file, {contentType: 'image'})
+    
 
+  
     // const formData = new FormData();
     // formData.append('file', file);
     // const newFiles = [...this.state.fileURL]
@@ -39,20 +43,32 @@ const CreateMemento = ({ navigation }) => {
   };
 
   const handleSubmit = async (mementoTitle, mementoDescription, fileURL) => {
+    Storage.put(mementoTitle, fileURL);
+    const ProfileImage = {
+      
+        bucket: awsExports.aws_user_files_s3_bucket,
+        region: awsExports.aws_user_files_s3_bucket_region,
+        key: 'public/' + mementoTitle
+      
+    }
     let Title = mementoTitle;
     let Description = mementoDescription;
-    let ProfileImage = fileURL;
     console.log(ProfileImage);
-    const input = { Title, Description, ProfileImage };
     if (
       Title.length !== 0 &&
       Description.length !== 0 &&
       ProfileImage !== undefined
     ) {
       try {
-        await API.graphql(
-          graphqlOperation(createMementoModel, { input: input })
-        );
+
+        await DataStore.save(
+          new MementoModel({
+          "Title": Title,
+          "Description": Description,
+          "UploadMediaModels": [],
+          "ProfileImage": ProfileImage
+        })
+      );
         alert(Title + "'s Memento created Successfully! ");
         navigation.navigate("Home");
       } catch (err) {
