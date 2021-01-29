@@ -30,6 +30,13 @@ export const schema = {
                     "type": "ID",
                     "isRequired": true,
                     "attributes": []
+                },
+                "Contribution": {
+                    "name": "Contribution",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -140,5 +147,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "1ec6ca4b7eafd145c2fa4478477709f8"
+    "version": "0a8a0b7665ed2bfe8e9ebb8264dc303a"
 };

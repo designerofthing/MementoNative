@@ -9,6 +9,7 @@ export declare class UploadMediaModel {
   readonly Uploader?: string;
   readonly Title?: string;
   readonly mementomodelID: string;
+  readonly Contribution?: string;
   constructor(init: ModelInit<UploadMediaModel>);
   static copyOf(source: UploadMediaModel, mutator: (draft: MutableModel<UploadMediaModel>) => MutableModel<UploadMediaModel> | void): UploadMediaModel;
 }

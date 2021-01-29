@@ -3,6 +3,7 @@ type UploadMediaModel @model @auth(rules: [{allow: public}]) @key(name: "byMemen
   Uploader: String
   Title: String
   mementomodelID: ID!
+  Contribution: String
 }
 
 type MementoModel @model @auth(rules: [{allow: public}]) {
@@ -12,4 +13,4 @@ type MementoModel @model @auth(rules: [{allow: public}]) {
   UploadMediaModels: [UploadMediaModel] @connection(keyName: "byMementoModel", fields: ["id"])
   ProfileImage: String
 }
-  
+ 
