@@ -85,7 +85,7 @@ const CreateMemento = ({ navigation }) => {
         allowFontScaling
         onChangeText={handleDescription}
       />
-      <ImagePickerComponent sendFile={handleUploadImage} />
+      <ImagePickerComponent sendFile={handleUploadImage} buttonText={'Select a profile image'}/>
 
       <TouchableOpacity
         style={styles.submitButton}

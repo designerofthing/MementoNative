@@ -3,7 +3,7 @@ import { Image, View, Platform, StyleSheet, TouchableOpacity, Text } from "react
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
 
-export default function ImagePickerComponent({ sendFile }) {
+export default function ImagePickerComponent({ sendFile, buttonText }) {
   const [image, setImage] = useState(null);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export default function ImagePickerComponent({ sendFile }) {
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <TouchableOpacity onPress={pickImage}>
           <View style={styles.buttonContainer}>
-            <Text style={styles.buttonText}>Select a profile image</Text>
+            <Text style={styles.buttonText}>{buttonText}</Text>
           </View>
         </TouchableOpacity>
       {image && (
