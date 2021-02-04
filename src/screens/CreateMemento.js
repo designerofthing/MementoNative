@@ -20,6 +20,7 @@ const CreateMemento = ({ navigation }) => {
   const [mementoDescription, setMementoDescription] = useState("");
   const [fileURL, setFileURL] = useState("");
 
+
   const handleTitle = (text) => {
     setMementoTitle(text);
   };
@@ -29,26 +30,18 @@ const CreateMemento = ({ navigation }) => {
 
   const handleUploadImage = (file) => {
     setFileURL(file);
-    
-
-  
-    // const formData = new FormData();
-    // formData.append('file', file);
-    // const newFiles = [...this.state.fileURL]
-    //     this.fileArray.push(URL.createObjectURL(file))
-    //     newFiles.push(file)
-    // this.setState({fileURL: newFiles}, () => {
-
-    // });
   };
 
   const handleSubmit = async (mementoTitle, mementoDescription, fileURL) => {
-    Storage.put(mementoTitle, fileURL);
+    let name = mementoTitle + Date.now()
+    Storage.put(name, fileURL, {
+      contentType: 'image/jpeg'
+    });
     const ProfileImage = {
-      
+        name: name,
         bucket: awsExports.aws_user_files_s3_bucket,
         region: awsExports.aws_user_files_s3_bucket_region,
-        key: 'public/' + mementoTitle
+        key: 'public/' + name
       
     }
     let Title = mementoTitle;

@@ -15,10 +15,14 @@ import { DataStore } from "@aws-amplify/datastore";
 import { MementoModel } from "../../models";
 import AppHeader from "../components/AppHeader";
 
-const Item = ({ item, onPress }) => (
+const Item = ({ item, fileUrl, onPress }) => (
   <View>
     <TouchableOpacity onPress={onPress} style={styles.mementoListContainer}>
-      <Image source={item.ProfileImage} resizeMode="cover" style={styles.image} />
+      <Image
+        source={fileUrl}
+        resizeMode="cover"
+        style={styles.image}
+      />
       <Text style={styles.mementoTitle}>{item.Title}'s memento</Text>
       <Text style={styles.mementoDescription}>{item.Description}</Text>
     </TouchableOpacity>
@@ -28,27 +32,29 @@ const Item = ({ item, onPress }) => (
 const { width, height } = Dimensions.get("window");
 
 export default function Home({ navigation, updateAuthState }) {
-  
-  const [ mementoList, setMementoList ] = useState([]); 
-  
+  const [mementoList, setMementoList] = useState([]);
+
   useEffect(() => {
     const ac = new AbortController();
     getMementos();
-    return () => {ac.abort();}
+    return () => {
+      ac.abort();
+    };
   }, []);
 
   const getMementos = async () => {
     let mementos = await DataStore.query(MementoModel);
-    setMementoList(mementos)
+    setMementoList(mementos);
+    console.log(mementos);
   };
 
-
   const _onPressItem = (item) => {
-    navigation.navigate("MementoDetail", {item});
+    navigation.navigate("MementoDetail", { item });
   };
 
   const renderItem = ({ item }) => {
-    return <Item item={item} onPress={() => _onPressItem(item)} />;
+    let fileUrl = `https://mementomedia152230-dev.s3.eu-west-2.amazonaws.com/${item.ProfileImage.key}` 
+    return <Item item={item} fileUrl={fileUrl} onPress={() => _onPressItem(item)} />;
   };
 
   async function signOut() {

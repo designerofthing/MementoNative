@@ -6,6 +6,7 @@ export declare class S3Object {
   readonly bucket: string;
   readonly region: string;
   readonly key: string;
+  readonly name?: string;
   constructor(init: ModelInit<S3Object>);
 }
 
@@ -27,13 +28,4 @@ export declare class MementoModel {
   readonly ProfileImage?: S3Object;
   constructor(init: ModelInit<MementoModel>);
   static copyOf(source: MementoModel, mutator: (draft: MutableModel<MementoModel>) => MutableModel<MementoModel> | void): MementoModel;
-}
-
-export declare class Picture {
-  readonly id: string;
-  readonly name?: string;
-  readonly owner?: string;
-  readonly file?: S3Object;
-  constructor(init: ModelInit<Picture>);
-  static copyOf(source: Picture, mutator: (draft: MutableModel<Picture>) => MutableModel<Picture> | void): Picture;
 }
