@@ -68,7 +68,7 @@ const CreateMemento = ({ navigation }) => {
         })
       );
         alert(Title + "'s Memento created Successfully! ");
-        navigation.navigate("Home");
+        navigation.push("Home");
         
       } catch (err) {
         console.log("error creating memento:" + err);

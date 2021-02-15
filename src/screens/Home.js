@@ -23,7 +23,9 @@ const Item = ({ item, fileUrl, onPress }) => (
         resizeMode="cover"
         style={styles.image}
       />
+      <View style={styles.space}>
       <Text style={styles.mementoTitle}>{item.Title}'s memento</Text>
+      </View>
       <Text style={styles.mementoDescription}>{item.Description}</Text>
     </TouchableOpacity>
   </View>
@@ -159,6 +161,10 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     fontSize: 20,
   },
+  space: {
+    padding: 15,
+  },
+
   mementoDescription: {
     position: "relative",
     fontSize: 15,

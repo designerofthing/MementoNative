@@ -75,7 +75,7 @@ const MementoDetail = ({ route, navigation }) => {
           graphqlOperation(createUploadMediaModel, { input: input })
         );
         alert("memento updated successfully!");
-        // navigation.navigate("MementoDetail");
+        navigation.push("MementoDetail");
       } catch (err) {
         console.log("error creating memento:" + err);
       }
