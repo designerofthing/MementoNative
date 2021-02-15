@@ -19,6 +19,7 @@ const CreateMemento = ({ navigation }) => {
   const [mementoTitle, setMementoTitle] = useState("");
   const [mementoDescription, setMementoDescription] = useState("");
   const [fileURL, setFileURL] = useState("");
+  const [mime, setMime] = useState("");
 
 
   const handleTitle = (text) => {
@@ -28,15 +29,19 @@ const CreateMemento = ({ navigation }) => {
     setMementoDescription(text);
   };
 
-  const handleUploadImage = (file) => {
+  const handleUploadImage = (file, imageMime) => {
     setFileURL(file);
+    setMime(imageMime);
   };
 
-  const handleSubmit = async (mementoTitle, mementoDescription, fileURL) => {
-    let name = mementoTitle + Date.now()
-    Storage.put(name, fileURL, {
-      contentType: 'image/jpeg'
+  const handleSubmit = async (mementoTitle, mementoDescription, fileURL, mime) => {
+    let extensionName = mime.split('/').pop()
+    let name = mementoTitle + Date.now() + '.' + extensionName
+
+    await Storage.put(name, fileURL, {
+      contentType: mime
     });
+
     const ProfileImage = {
         name: name,
         bucket: awsExports.aws_user_files_s3_bucket,
@@ -64,6 +69,7 @@ const CreateMemento = ({ navigation }) => {
       );
         alert(Title + "'s Memento created Successfully! ");
         navigation.navigate("Home");
+        
       } catch (err) {
         console.log("error creating memento:" + err);
       }
@@ -99,7 +105,7 @@ const CreateMemento = ({ navigation }) => {
 
       <TouchableOpacity
         style={styles.submitButton}
-        onPress={() => handleSubmit(mementoTitle, mementoDescription, fileURL)}
+        onPress={() => handleSubmit(mementoTitle, mementoDescription, fileURL, mime)}
       >
         <Text style={styles.submitButtonText}> Submit </Text>
       </TouchableOpacity>

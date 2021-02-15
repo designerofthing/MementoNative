@@ -91,13 +91,15 @@ const MementoDetail = ({ route, navigation }) => {
   // this.setState({fileURL: newFiles}, () => {
 
   // });
-
+  let profileImageUrl = `https://${route.params.item.ProfileImage.bucket}.s3.${route.params.item.ProfileImage.region}.amazonaws.com/${route.params.item.ProfileImage.key}`
+  
+  
   return (
     <View>
       <AppHeader />
       <View style={styles.mementoContainer}>
         <Image
-          source={route.params.item.ProfileImage}
+          source={profileImageUrl}
           resizeMode="cover"
           style={styles.profileImage}
         />

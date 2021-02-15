@@ -10,7 +10,7 @@ import {
   FlatList,
   Image,
 } from "react-native";
-import { Auth } from "aws-amplify";
+import { Auth, Storage } from "aws-amplify";
 import { DataStore } from "@aws-amplify/datastore";
 import { MementoModel } from "../../models";
 import AppHeader from "../components/AppHeader";
@@ -45,7 +45,8 @@ export default function Home({ navigation, updateAuthState }) {
   const getMementos = async () => {
     let mementos = await DataStore.query(MementoModel);
     setMementoList(mementos);
-    console.log(mementos);
+    // let profileImages = await Storage.get(mementos[0].ProfileImage.name)
+    // console.log(profileImages);
   };
 
   const _onPressItem = (item) => {
@@ -53,7 +54,7 @@ export default function Home({ navigation, updateAuthState }) {
   };
 
   const renderItem = ({ item }) => {
-    let fileUrl = `https://mementomedia152230-dev.s3.eu-west-2.amazonaws.com/${item.ProfileImage.key}` 
+    let fileUrl = `https://${item.ProfileImage.bucket}.s3.${item.ProfileImage.region}.amazonaws.com/${item.ProfileImage.key}` 
     return <Item item={item} fileUrl={fileUrl} onPress={() => _onPressItem(item)} />;
   };
 

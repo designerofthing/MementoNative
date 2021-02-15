@@ -31,9 +31,16 @@ export default function ImagePickerComponent({ sendFile, buttonText }) {
     console.log(result);
 
     if (!result.cancelled) {
-      setImage(result.uri);
-      sendFile(result.uri)
+      const imagePath = result.uri;
+      const imageExt = result.uri.split(':').pop();
+      const imageMime = imageExt.split(';').shift();
 
+      let picture = await fetch(imagePath);
+    picture = await picture.blob();
+      
+      setImage(imagePath);
+      sendFile(picture, imageMime)
+  
     }
   };
 
