@@ -44,22 +44,22 @@ function App() {
       </AuthenticationStack.Navigator>
     );
   };
-  const AppNavigator = (props) => {
+  const AppNavigator = () => {
     return (
       <AppStack.Navigator>
         <AppStack.Screen name="Home">
           {(screenProps) => (
-            <Home {...screenProps} updateAuthState={props.updateAuthState} />
+            <Home {...screenProps} updateAuthState={updateAuthState} />
           )}
         </AppStack.Screen>
         <AppStack.Screen name="MementoDetail">
           {screenProps => (
-            <MementoDetail  {...screenProps} updateAuthState={props.updateAuthState} />
+            <MementoDetail  {...screenProps} updateAuthState={updateAuthState} />
             )}
         </AppStack.Screen>
         <AppStack.Screen name="CreateMemento">
           {screenProps => (
-            <CreateMemento {...screenProps} updateAuthState={props.updateAuthState} />
+            <CreateMemento {...screenProps} updateAuthState={updateAuthState} />
             )}
         </AppStack.Screen>
       </AppStack.Navigator>

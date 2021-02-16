@@ -19,7 +19,7 @@ const Item = ({ item, fileUrl, onPress }) => (
   <View>
     <TouchableOpacity onPress={onPress} style={styles.mementoListContainer}>
       <Image
-        source={fileUrl}
+        source={{uri: fileUrl}}
         resizeMode="cover"
         style={styles.image}
       />

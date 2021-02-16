@@ -34,7 +34,6 @@ const MementoDetail = ({ route, navigation }) => {
 
   const getMementos = async () => {
     let mementos = await DataStore.query(UploadMediaModel, c => c.mementomodelID("eq", mementoModelID));
-    debugger
     setMementoMedia(mementos);
   };
 
@@ -53,7 +52,7 @@ const MementoDetail = ({ route, navigation }) => {
     return (
       <View style={styles.mementoMediaContainer}>
         <Image
-          source={fileUrl}
+          source={{uri: fileUrl}}
           resizeMode="contain"
           style={styles.image}
         />
@@ -130,7 +129,7 @@ const MementoDetail = ({ route, navigation }) => {
       <AppHeader />
       <View style={styles.mementoContainer}>
         <Image
-          source={profileImageUrl}
+          source={{uri: profileImageUrl}}
           resizeMode="cover"
           style={styles.profileImage}
         />
@@ -149,6 +148,7 @@ const MementoDetail = ({ route, navigation }) => {
         keyExtractor={(item) => item.id}
         ItemSeparatorComponent={() => <View style={{ width: 30 }} />}
       />
+      <View>
       <ImagePickerComponent
         sendFile={handleUploadImage}
         buttonText={"Contribute to this memento"}
@@ -172,6 +172,7 @@ const MementoDetail = ({ route, navigation }) => {
           </TouchableOpacity>
         </View>
       )}
+      </View>
     </View>
   );
 };
