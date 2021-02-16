@@ -9,11 +9,10 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
-import Amplify, { Auth, API, graphqlOperation } from "aws-amplify";
+import Amplify, { Auth, Storage } from "aws-amplify";
 import { DataStore } from "@aws-amplify/datastore";
+import awsExports from "../../aws-exports"
 import { UploadMediaModel } from "../../models";
-
-import { createUploadMediaModel } from "../../graphql/mutations";
 import ImagePickerComponent from "../components/ImagePickerComponent";
 import AppHeader from "../components/AppHeader";
 
@@ -22,8 +21,10 @@ const { width, height } = Dimensions.get("window");
 const MementoDetail = ({ route, navigation }) => {
   const [mementoMedia, setMementoMedia] = useState([]);
   const [fileURL, setFileURL] = useState("");
-  const [Uploader, setUploader] = useState("");
+  const [uploader, setUploader] = useState("");
   const [mementoTitle, setMementoTitle] = useState("");
+  const [mime, setMime] = useState("");
+
 
   const getUser = async () => {
     let response = await Auth.currentUserInfo();
@@ -45,14 +46,16 @@ const MementoDetail = ({ route, navigation }) => {
   }, []);
 
   const renderItem = ({ item }) => {
+    let fileUrl = `https://${item.Contribution.bucket}.s3.${item.Contribution.region}.amazonaws.com/${item.Contribution.key}` 
+
     return (
       <View style={styles.mementoMediaContainer}>
         <Image
-          source={item.Contribution}
-          resizeMode="cover"
+          source={fileUrl}
+          resizeMode="contain"
           style={styles.image}
         />
-        <Text style={styles.mementoTitle}>{item.Title}</Text>
+        <Text style={styles.mementoDescription}>{item.Title}</Text>
       </View>
     );
   };
@@ -61,26 +64,51 @@ const MementoDetail = ({ route, navigation }) => {
     setMementoTitle(text);
   };
 
-  const handleUploadImage = (file) => {
+  const handleUploadImage = (file, imageMime) => {
     setFileURL(file);
+    setMime(imageMime);
+
   };
-  const handleSubmit = async (mementoTitle, Uploader, fileURL) => {
-    let mementomodelID = route.params.item.id;
+  const handleSubmit = async (mementoTitle, mime, uploader, fileURL) => {
+    debugger
+    let extensionName = mime.split('/').pop()
+    let name = mementoTitle + Date.now() + '.' + extensionName
+    
+    await Storage.put(name, fileURL, {
+      contentType: mime
+    });
+    
+    let mementoModelID = route.params.item.id;
+    let Contribution = {
+        name: name,
+        bucket: awsExports.aws_user_files_s3_bucket,
+        region: awsExports.aws_user_files_s3_bucket_region,
+        key: 'public/' + name
+      
+    }
     let Title = mementoTitle;
-    let Contribution = fileURL;
-    const input = { Uploader, Title, Contribution, mementomodelID };
-    if (Contribution !== undefined && Title.length !== 0) {
+    if (
+      Title.length !== 0 &&
+      Contribution !== undefined
+    ) {
       try {
-        await API.graphql(
-          graphqlOperation(createUploadMediaModel, { input: input })
-        );
-        alert("memento updated successfully!");
-        navigation.push("MementoDetail");
+
+        await DataStore.save(
+          new UploadMediaModel({
+          "Title": Title,
+          "Uploader": uploader,
+          "mementomodelID": mementoModelID,
+          "Contribution": Contribution
+        })
+      );
+        alert(`Your contribution ${Title} has been saved successfully!`);
+        navigation.push("Home");
+        
       } catch (err) {
-        console.log("error creating memento:" + err);
+        console.log("error creating contribution:" + err);
       }
     } else {
-      alert("Please complete the title");
+      alert("Please complete all the fields");
     }
   };
   // const formData = new FormData();
@@ -134,7 +162,7 @@ const MementoDetail = ({ route, navigation }) => {
           />
           <TouchableOpacity
             style={styles.submitButton}
-            onPress={() => handleSubmit(mementoTitle, Uploader, fileURL)}
+            onPress={() => handleSubmit(mementoTitle, mime, uploader, fileURL)}
           >
             <Text style={styles.submitButtonText}> Submit </Text>
           </TouchableOpacity>

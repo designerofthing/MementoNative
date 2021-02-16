@@ -13,7 +13,7 @@ export const schema = {
                 "Uploader": {
                     "name": "Uploader",
                     "isArray": false,
-                    "type": "String",
+                    "type": "AWSEmail",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -185,5 +185,5 @@ export const schema = {
             }
         }
     },
-    "version": "b030fd87414ae5b251f5d0260be6e8f1"
+    "version": "6ad1ecf2cec18765587ecea91ea2f172"
 };

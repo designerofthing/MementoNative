@@ -1,6 +1,6 @@
 type UploadMediaModel @model @auth(rules: [{allow: public}]) @key(name: "byMementoModel", fields: ["mementomodelID"]) {
   id: ID!
-  Uploader: String
+  Uploader: AWSEmail
   Title: String
   mementomodelID: ID!
   Contribution: S3Object

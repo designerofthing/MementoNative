@@ -1,4 +1,4 @@
-import { Storage, API, graphqlOperation } from "aws-amplify";
+import { Storage } from "aws-amplify";
 import React, { useState } from "react";
 import {
   View,
@@ -7,7 +7,6 @@ import {
   TextInput,
   StyleSheet,
 } from "react-native";
-import { createMementoModel } from "../../graphql/mutations";
 import awsExports from "../../aws-exports"
 import AppHeader from "../components/AppHeader";
 import ImagePickerComponent from "../components/ImagePickerComponent";
