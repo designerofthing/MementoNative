@@ -23,6 +23,7 @@ const MementoDetail = ({ route, navigation }) => {
   const [fileURL, setFileURL] = useState("");
   const [uploader, setUploader] = useState("");
   const [mementoTitle, setMementoTitle] = useState("");
+  const [mementoModelID, setMementoModelID] = useState(route.params.item.id);
   const [mime, setMime] = useState("");
 
 
@@ -32,7 +33,8 @@ const MementoDetail = ({ route, navigation }) => {
   };
 
   const getMementos = async () => {
-    let mementos = await DataStore.query(UploadMediaModel);
+    let mementos = await DataStore.query(UploadMediaModel, c => c.mementomodelID("eq", mementoModelID));
+    debugger
     setMementoMedia(mementos);
   };
 
@@ -70,7 +72,6 @@ const MementoDetail = ({ route, navigation }) => {
 
   };
   const handleSubmit = async (mementoTitle, mime, uploader, fileURL) => {
-    debugger
     let extensionName = mime.split('/').pop()
     let name = mementoTitle + Date.now() + '.' + extensionName
     
@@ -78,7 +79,7 @@ const MementoDetail = ({ route, navigation }) => {
       contentType: mime
     });
     
-    let mementoModelID = route.params.item.id;
+    
     let Contribution = {
         name: name,
         bucket: awsExports.aws_user_files_s3_bucket,
@@ -101,8 +102,10 @@ const MementoDetail = ({ route, navigation }) => {
           "Contribution": Contribution
         })
       );
-        alert(`Your contribution ${Title} has been saved successfully!`);
+        alert(`Your contribution "${Title}" has been saved successfully!`);
+        setFileURL('');
         navigation.push("Home");
+        
         
       } catch (err) {
         console.log("error creating contribution:" + err);
@@ -138,6 +141,7 @@ const MementoDetail = ({ route, navigation }) => {
           {route.params.item.Description}
         </Text>
       </View>
+      <Text style={styles.listTitle}>Image Contributions</Text>
       <FlatList
         horizontal
         data={mementoMedia}
@@ -200,11 +204,18 @@ const styles = StyleSheet.create({
   mementoTitle: {
     justifyContent: "flex-start",
     fontSize: 30,
-    paddingBottom: 10,
+    paddingBottom: 5,
   },
   mementoDescription: {
+    paddingTop: 5,
     position: "relative",
     fontSize: 15,
+  },
+  listTitle: {
+    position: "relative",
+    fontSize: 20,
+    paddingTop: 10,
+    textAlign: "center",
   },
   profileImage: {
     width: 100,
