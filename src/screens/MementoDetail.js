@@ -103,7 +103,7 @@ const MementoDetail = ({ route, navigation }) => {
       );
         alert(`Your contribution "${Title}" has been saved successfully!`);
         setFileURL('');
-        navigation.push("Home");
+        navigation.push("MementoDetail");
         
         
       } catch (err) {
