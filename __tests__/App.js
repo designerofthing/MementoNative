@@ -6,5 +6,7 @@ import App from '../App';
 import renderer from 'react-test-renderer';
 
 it('renders correctly', async () => {
-   renderer.create(<App />);
+   const tree = renderer.create(<App />);
+   expect(tree).toMatchSnapshot('App.js.snap');
+
 });

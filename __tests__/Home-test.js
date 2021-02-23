@@ -1,9 +1,10 @@
 
 import React from 'react';
-import renderer from 'react-test-renderer';
 import Home from '../src/screens/Home';
+import renderer from 'react-test-renderer';
 
-test('renders correctly', () => {
+
+it('renders correctly', async () => {
   const tree = renderer.create(<Home />).toJSON();
-  expect(tree).toMatchSnapshot();
+  expect(tree).toMatchSnapshot('Home-test.js.snap');
 });
