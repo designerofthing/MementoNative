@@ -26,6 +26,7 @@ const CreateMemento = ({ navigation }) => {
   const handleUploadImage = (file) => {
     console.log(file);
     setFileURL(file);
+    debugger
 
     // const formData = new FormData();
     // formData.append('file', file);

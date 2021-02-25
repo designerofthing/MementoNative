@@ -1,0 +1,329 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Create Memento renders correctly: CreateMemento-test.js.snap 1`] = `
+<View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "height": 90,
+        "justifyContent": "center",
+        "padding": 10,
+      }
+    }
+  >
+    <Image
+      source={1}
+      style={
+        Object {
+          "height": 60,
+          "width": 60,
+        }
+      }
+    />
+    <Text
+      style={
+        Object {
+          "color": "#50055E",
+          "fontSize": 60,
+        }
+      }
+    >
+      memento
+    </Text>
+  </View>
+  <TextInput
+    allowFontScaling={true}
+    autoCapitalize="none"
+    onChangeText={[Function]}
+    placeholder=" Loved one's name for memento"
+    placeholderTextColor="#50055E"
+    rejectResponderTermination={true}
+    style={
+      Object {
+        "borderColor": "#50055E",
+        "borderRadius": 5,
+        "borderWidth": 1,
+        "height": 40,
+        "margin": 15,
+        "textAlign": "center",
+      }
+    }
+    underlineColorAndroid="transparent"
+  />
+  <TextInput
+    allowFontScaling={true}
+    autoCapitalize="none"
+    onChangeText={[Function]}
+    placeholder="A short description of them"
+    placeholderTextColor="#50055E"
+    rejectResponderTermination={true}
+    required={true}
+    style={
+      Object {
+        "borderColor": "#50055E",
+        "borderRadius": 5,
+        "borderWidth": 1,
+        "height": 40,
+        "margin": 15,
+        "textAlign": "center",
+      }
+    }
+    underlineColorAndroid="transparent"
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "borderColor": "#50055E",
+            "borderRadius": 10,
+            "borderWidth": 2,
+            "height": 40,
+            "justifyContent": "center",
+            "width": 250,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#50055E",
+              "fontSize": 16,
+            }
+          }
+        >
+          Select a profile image
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#50055E",
+        "borderRadius": 5,
+        "height": 40,
+        "margin": 15,
+        "opacity": 1,
+        "padding": 10,
+        "textAlign": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "white",
+          "fontSize": 16,
+        }
+      }
+    >
+       Submit 
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Create Memento renders the TextInput component 1`] = `
+<TextInput
+  allowFontScaling={true}
+  autoCorrect={false}
+  rejectResponderTermination={true}
+  underlineColorAndroid="transparent"
+  value="apple banana kiwi"
+/>
+`;
+
+exports[`renders correctly 1`] = `
+<View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "height": 90,
+        "justifyContent": "center",
+        "padding": 10,
+      }
+    }
+  >
+    <Image
+      source={1}
+      style={
+        Object {
+          "height": 60,
+          "width": 60,
+        }
+      }
+    />
+    <Text
+      style={
+        Object {
+          "color": "#50055E",
+          "fontSize": 60,
+        }
+      }
+    >
+      memento
+    </Text>
+  </View>
+  <TextInput
+    allowFontScaling={true}
+    autoCapitalize="none"
+    onChangeText={[Function]}
+    placeholder=" Loved one's name for memento"
+    placeholderTextColor="#50055E"
+    rejectResponderTermination={true}
+    style={
+      Object {
+        "borderColor": "#50055E",
+        "borderRadius": 5,
+        "borderWidth": 1,
+        "height": 40,
+        "margin": 15,
+        "textAlign": "center",
+      }
+    }
+    underlineColorAndroid="transparent"
+  />
+  <TextInput
+    allowFontScaling={true}
+    autoCapitalize="none"
+    onChangeText={[Function]}
+    placeholder="A short description of them"
+    placeholderTextColor="#50055E"
+    rejectResponderTermination={true}
+    required={true}
+    style={
+      Object {
+        "borderColor": "#50055E",
+        "borderRadius": 5,
+        "borderWidth": 1,
+        "height": 40,
+        "margin": 15,
+        "textAlign": "center",
+      }
+    }
+    underlineColorAndroid="transparent"
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "borderColor": "#50055E",
+            "borderRadius": 10,
+            "borderWidth": 2,
+            "height": 40,
+            "justifyContent": "center",
+            "width": 250,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#50055E",
+              "fontSize": 16,
+            }
+          }
+        >
+          Select a profile image
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#50055E",
+        "borderRadius": 5,
+        "height": 40,
+        "margin": 15,
+        "opacity": 1,
+        "padding": 10,
+        "textAlign": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "white",
+          "fontSize": 16,
+        }
+      }
+    >
+       Submit 
+    </Text>
+  </View>
+</View>
+`;
