@@ -15,6 +15,7 @@ import awsExports from "../../aws-exports"
 import { UploadMediaModel } from "../../models";
 import ImagePickerComponent from "../components/ImagePickerComponent";
 import AppHeader from "../components/AppHeader";
+import VideoPlayer from "../components/VideoPlayer";
 
 const { width, height } = Dimensions.get("window");
 
@@ -51,9 +52,7 @@ const MementoDetail = ({ route, navigation }) => {
     return (
       <View style={styles.mementoMediaContainer}>
         { item.Contribution.key.toString().endsWith('mp4') ?
-        <video controls name={item.Title}>
-          <source src={{uri: fileUrl}}/>
-        </video>
+        <VideoPlayer name={item.Title} source src={{uri: fileUrl}}/>
         :
         <Image
           source={{uri: fileUrl}}
