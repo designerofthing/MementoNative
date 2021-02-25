@@ -48,14 +48,20 @@ const MementoDetail = ({ route, navigation }) => {
 
   const renderItem = ({ item }) => {
     let fileUrl = `https://${item.Contribution.bucket}.s3.${item.Contribution.region}.amazonaws.com/${item.Contribution.key}` 
-
     return (
       <View style={styles.mementoMediaContainer}>
+        { item.Contribution.key.toString().endsWith('mp4') ?
+        <video controls name={item.Title}>
+          <source src={{uri: fileUrl}}/>
+        </video>
+        :
         <Image
           source={{uri: fileUrl}}
           resizeMode="contain"
           style={styles.image}
         />
+
+  }
         <Text style={styles.mementoDescription}>{item.Title}</Text>
       </View>
     );
